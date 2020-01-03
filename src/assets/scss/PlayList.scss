@@ -1,0 +1,61 @@
+.music-card-layout {
+    border-top: 2px solid #c20c0c;
+    > .card-row {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 188px;
+      > .card-column {
+        width: 140px;
+        > .playlist-cover-image {
+          width: 100%;
+          height: 140px;
+          display: block;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden; // 保留radius
+          > img {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; // for upper radius
+          }
+          > .play-count {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0px;
+            background-image: url('../img/coverall.png');
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: 0 -537px;
+            height: 27px;
+            font-size: 12px;
+            line-height: 27px; // line-height 与 height 一样，自动居中
+            padding: 0 7px;
+            color: #ccc;
+          }
+        }
+        > .playlist-name {
+          width: 100%;
+          margin: 8px 0 3px;
+          font-size: 14px;
+          color: #000;
+          line-height: 19px;
+          text-align: left;
+          overflow: hidden;
+          text-overflow: ellipsis; // ...
+          white-space: nowrap; // 不让换行，不然没有...
+
+        }
+        > .playlist-user-name {
+          width: 100%;
+          margin: 0;
+          font-size: 12px;
+          color: #999;
+          text-align: left;
+        }
+      }
+    }
+  }
