@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';  // react-redux 用于连接 react 和 redux
 
 import './assets/scss/index.scss';
 import APP from './routers';
