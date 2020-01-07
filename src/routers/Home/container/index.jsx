@@ -21,12 +21,6 @@ class Home extends Component {
                 props.setPlayList(TopPlayList.fromJS(res.data.playlists));
             }
         })
-        // this.state = store.getState();
-        // this.StoreChange = this.StoreChange.bind(this);
-        // store.subscribe(this.StoreChange)
-    }
-    
-    componentDidMount() {
     }
 
     render() {
@@ -54,19 +48,6 @@ class Home extends Component {
             </div>
         )
     }
-    changeVal() {
-        // const action = {
-        //     type: CHANGE_VALUE,
-        //     value: 'test change val'
-        // }
-        // store.dispatch(action);
-    }
-    StoreChange() {
-        // this.setState(store.getState());
-    }
-    checkVal() {
-        console.log(this.state.value, 'after change');
-    }
 }
 
 // PropTypes 用于判断类型，方便错误排查
@@ -78,7 +59,7 @@ Home.propTypes = {
 // 把 Store 中state 定义的变量 map 到 React 组件的 props 中，在 React 组件中可以直接 props.*** 使用，并且是响应式数据，会随着state 中数据的变化而实时更新
 // 类似于 Vue 中的 mapState
 const mapStateToProps = (state) => ({
-    playList: state.playList
+    playList: state.home.playList
 });
 
 // 把 Store 中定义的函数action map 到 React组件的props中，在React组件中可以直接使用 props.*** 使用
