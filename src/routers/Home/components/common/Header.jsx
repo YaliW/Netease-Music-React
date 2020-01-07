@@ -33,6 +33,7 @@ class Header extends Component {
             </div>
         )
     }
-  }
+}
 
-  export default Header;
+// Header 是公共头组件，每个路由的组件都会显示，当点击头的时候，会跳转到相应的路由，然后根据外层 index.js 中路由的配置，再跳转到相应的组件
+export default Header;
