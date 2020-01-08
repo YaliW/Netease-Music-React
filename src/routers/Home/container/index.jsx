@@ -5,27 +5,46 @@ import { setPlayList } from '../store/actions';
 import { TopPlayList } from '../model';
 import { fetchPlayList } from '../service';
 
-import Header from '../components/common/Header'
-import Footer from '../components/common/Footer'
-import Player from '../components/common/Player'
+import Header from '../../common/Header'
+import Footer from '../../common/Footer'
+import Player from '../../common/Player'
 import PlayList from '../components/PlayList'
 import Category from '../components/Category'
 
 class Home extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            order: 'hot'
+        };
+        this.fetchPlayListAsync();
         // 调用异步请求，拿到结果之后，调用setPlayList
-        fetchPlayList({ offset: 0, limit: 10  }).then((res) => {
-            console.log(res, 'res');
+        
+    }
+
+    fetchPlayListAsync() {
+        const payload = {
+            offset: 0, 
+            limit: 10,
+            order: this.state.order
+        }
+        fetchPlayList(payload).then((res) => {
             if (res.status === 200 && res.data.code === 200) {
-                props.setPlayList(TopPlayList.fromJS(res.data.playlists));
+                this.props.setPlayList(TopPlayList.fromJS(res.data.playlists));
             }
         })
     }
 
+    handleClick(param) {
+        this.setState({
+            order: param
+        },
+        this.fetchPlayListAsync)  // this.fetchPlayListAsync 是一个函数，作为callback. 如果this.fetchPlayListAsync（） 则是会立刻执行这个函数，把结果null 作为callback
+    }
+
     render() {
         const { playList } = this.props;
-        console.log(playList, 'playList');
+        const { order } = this.state;
         return (
             <div className='netease-layout'>
         
@@ -35,7 +54,7 @@ class Home extends Component {
 
                 <section>
                     <div className="playlist-container">
-                        <Category></Category>
+                        <Category type={order} onChange={this.handleClick.bind(this)}></Category>
                         <PlayList data={playList}></PlayList>
                     </div>
                 </section>
@@ -58,12 +77,16 @@ Home.propTypes = {
 
 // 把 Store 中state 定义的变量 map 到 React 组件的 props 中，在 React 组件中可以直接 props.*** 使用，并且是响应式数据，会随着state 中数据的变化而实时更新
 // 类似于 Vue 中的 mapState
+// 每次Store 中state 有变化的时候，就会自动调用更新state，会接收整个state 的数据
 const mapStateToProps = (state) => ({
     playList: state.home.playList
 });
 
 // 把 Store 中定义的函数action map 到 React组件的props中，在React组件中可以直接使用 props.*** 使用
 // action 中定义了 TYPE 和 需要更改的state中的变量新的值，调用Reducer 更改 state 的值
+// 调用流程为 首先引入 setPlayList，然后在 mapDispatchToProps 中把此方法 map给组件的props，然后在组件中使用props.*** 调用此函数
+// 如果参数是一个 function， 当组件创建的时候，会自动调用
+// 如果参数是一个 object, 会封装成一个props 中的function，调用的时候自动 dispatch
 const mapDispatchToProps = {
     setPlayList
 };

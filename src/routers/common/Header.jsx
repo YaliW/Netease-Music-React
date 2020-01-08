@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const TopBarOptions = {
 topBar: [
@@ -15,10 +15,11 @@ class Header extends Component {
     render() {
         const itemLists = TopBarOptions.topBar.map((item) => {
             return (
-                <Link to={item.url} className="top-bar-item" key={item.title}>
+                // NavLink 当在当前url时，activeClassName 会生效
+                <NavLink to={item.url} activeClassName="activeURL" className="top-bar-item" key={item.title}>
                     <em>{item.title}</em>
                     <sub>&nbsp;</sub>
-                </Link>
+                </NavLink>
             )
         });
         return (

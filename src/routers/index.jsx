@@ -14,6 +14,7 @@ class Layout extends Component {
         return (
           <Router>
             <Switch>
+                {/* exact 匹配整个url */}
                 <Route exact path="/">
                     <Home />
                 </Route>

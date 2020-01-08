@@ -9,7 +9,7 @@
         transform: translateX(-50%);
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: stretch;
         justify-content: flex-start;
         color: #fff;
         line-height: 100%;
@@ -22,6 +22,9 @@
         }
         > .item-list {
             display: flex;
+            > .activeURL {
+                background-color: #C20C0C;
+            }
             > .top-bar-item {
                 color: white;
                 text-decoration: none;
