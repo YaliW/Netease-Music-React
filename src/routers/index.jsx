@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 
 import MyMusic from './MyMusic/container';
 import Home from './Home/container';
+import Friends from './Friends/container';
 
 class Layout extends Component {
     render () {
@@ -20,6 +21,18 @@ class Layout extends Component {
                 </Route>
                 <Route path="/my_music">
                     <MyMusic />
+                </Route>
+                <Route path="/friends">
+                    <Friends />
+                </Route>
+                <Route path="/shop">
+                    <Friends />
+                </Route>
+                <Route path="/musician">
+                    <Friends />
+                </Route>
+                <Route path="/download">
+                    <Friends />
                 </Route>
             </Switch>
           </Router>

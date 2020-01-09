@@ -73,14 +73,12 @@ class RightContent extends Component {
         // let initialNode  =  findDomNode(this.refs.descRef);
         // console.log(this.refs.descRef.clientHeight, 'initialNode')
 
-        this.computeIsClosed()
-    }
-
-    componentDidUpdate() {
-        this.computeIsClosed()
+        // this.computeIsClosed()
     }
 
     render() {
+        this.computeIsClosed();
+
         const { opened, isCanOpen } = this.state;
         const { data } = this.props;
         const { tags, tracks } = data;
