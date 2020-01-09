@@ -6,5 +6,14 @@ export default {
     getPlayList: {
         url: `${prefix}/top/playlist`,
         method: 'GET'
+    },
+    getMyPlayList: {
+        url: `${prefix}/user/playlist`,
+        method: 'GET'
+    },
+    getPlayListDetail: {
+        url: `${prefix}/playlist/detail`,
+        method: 'GET'
     }
+
 };   

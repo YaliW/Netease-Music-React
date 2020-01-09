@@ -16,7 +16,7 @@ class Header extends Component {
         const itemLists = TopBarOptions.topBar.map((item) => {
             return (
                 // NavLink 当在当前url时，activeClassName 会生效
-                <NavLink to={item.url} activeClassName="activeURL" className="top-bar-item" key={item.title}>
+                <NavLink exact to={item.url} activeClassName="activeURL" className="top-bar-item" key={item.title}>
                     <em>{item.title}</em>
                     <sub>&nbsp;</sub>
                 </NavLink>

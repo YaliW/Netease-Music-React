@@ -1,0 +1,2 @@
+export const SET_MY_PLAY_LIST = 'SET_MY_PLAY_LIST';
+export const SET_PLAY_LIST_DETAIL = 'SET_PLAY_LIST_DETAIL';

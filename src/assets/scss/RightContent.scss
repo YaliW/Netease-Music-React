@@ -1,0 +1,272 @@
+.song-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    > .song-introduction {
+        // height: 328px;
+        padding: 40px;
+        box-sizing: border-box; // include content + padding + border
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        > .image-border {
+            border: 1px solid #dfdfdf;
+            padding: 4px;
+            height: 208px;
+            width: 208px;
+            box-sizing: border-box;
+            flex: 0 0 auto;
+            > img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        > .introduction-content {
+            margin: 0 0 0 27px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            > .song-name {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                > .song-list-icon {
+                    background: url('../img/icon.png');
+                    background-position: 0 -243px;
+                    background-repeat: no-repeat;
+                    margin: 5px 6px 10px 0;
+                    width: 54px;
+                    height: 24px;
+                    > .icon {
+                        background-image: url('../img/white-r-icon.png');
+                        display: inline-block;
+                        width: 8px;
+                        height: 8px;
+                        top: -6px;
+                        background-size: cover;
+                        left: 34px;
+                        position: relative;
+                    }
+                }
+                > .name {
+                    font-size: 20px;
+                    color: #333333;
+                    
+                }
+            }
+            > .song-author {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                margin: 0 0 20px;
+                font-size: 12px;
+                > img {
+                    width: 35px;
+                    height: 35px;
+                }
+                > .author-name {
+                    margin: 0 0 0 10px;
+                    color: #0C73C2;
+                    display: flex;
+                    align-items: center;
+                }
+                > .create-time {
+                    margin: 0 0 0 15px;
+                    color: #999999;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            > .song-play-button {
+                margin: 0 -10px 25px 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                // background-color: #3874bd;
+                width: 70px;
+                padding: 0 5px 0 10px;
+                box-sizing: border-box;
+                border-radius: 3px;
+                // background: linear-gradient(to bottom, #518dd0 0%,#3874bd 100%);
+                background: linear-gradient(to bottom, rgb(79, 140, 209) 0%, rgb(56, 116,189) 100%);
+                cursor: pointer;
+
+                > .play-icon {
+                    background: url('../img/button2.png') no-repeat 0 9999px;
+                    text-decoration: none;
+                    width: 20px;
+                    height: 18px;
+                    margin: 6px 2px 2px 0;
+                    background-position: 0 -1622px;
+                    overflow: hidden;
+                }
+                > .play {
+                    color: #fff;
+                    font-size: 12px;
+                    height: 31px;
+                    line-height: 31px;
+                }
+            }
+            > .song-mark {
+                    font-size: 12px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                > .mark {
+                    color: #666666;
+                    height: 22px;
+                    line-height: 22px;
+                }
+                > .mark-content {
+                    box-sizing: border-box;
+                    margin-right: 10px;
+                    height: 22px;
+                    display: inline-block;
+                    padding: 0 13px;
+                    border: 1px solid rgb(214, 214, 214);
+                    border-radius: 11px;
+
+                    line-height: 20px;
+                    color: #2c3e50;
+                    background: linear-gradient(to top, #f7f7f7 0%,#f1f1f1 100%);
+                }
+            }
+            > .song-detail {
+                margin: 8px 0 0;
+                font-size: 12px;
+                color: #666666;
+                text-align: left;
+                width: 430px;
+                display: block;
+                line-height: 18px;
+                // border-bottom: 1px solid red;
+                &.closed {
+                    max-height: 54px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                // text-overflow: ellipsis; // ...
+                // white-space: nowrap; // 不让换行，不然没有...
+            }
+            > .detail-operation-btn {
+                color: #0c73c2;
+                font-size: 12px;
+                cursor: pointer;
+                text-align: right;
+                // > .openIcon {
+                //     width: 11px;
+                //     height: 8px;
+                //     background-position: -65px -520px;
+                //     background: url('../../assets/icon.png') no-repeat 0 9999px;
+                // }
+                // > .closeIcon {
+
+                // }
+            }
+            
+        }
+    }
+    .song-list-content-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px 0 32px;
+        align-items: center;
+        border-bottom: 2px solid #c20c0c;
+        > .left-side {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            > .song-list-name {
+                font-size: 20px;
+                color: #333333;
+            }
+            > .song-list-length {
+                font-size: 12px;
+                color: #666666;
+                margin: 9px 0 0 20px;
+            }
+        }
+        > .play-count {
+            font-size: 12px;
+            color: #666666;
+            margin: 5px 0 0;
+            float: right;
+            height: 28px;
+            line-height: 28px;
+            > span {
+                font-weight: bold;
+                color: #c20c0c;
+            }
+        }
+    }
+    > .song-list-table {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to bottom, #f7f7f7 0%,#f1f1f1 100%);
+        border-bottom: 1px solid #d6d6d6;
+        justify-content: space-between;
+        > .common {
+            text-align: left;
+            font-weight: normal;
+            color: #666;
+            font-size: 12px;
+            border-right: 1px solid #d6d6d6;
+            height: 18px;
+            line-height: 18px;
+            padding: 8px 10px;
+        }
+        
+    }
+    .first-title {
+        width: 54px;
+    }
+    .second-title {
+        width: 283px;
+    }
+    .third-title {
+        width: 91px;
+    }
+    .fourth-title {
+        width: 83px;
+    }
+    .fifth-title {
+        width: 125px;
+        
+    }
+    > .song-list-content {
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        > .common {
+            text-align: left;
+            font-weight: normal;
+            color: #666;
+            font-size: 12px;
+            height: 18px;
+            line-height: 18px;
+            padding: 8px 10px;
+            overflow: hidden;
+            text-overflow: ellipsis; // ...
+            white-space: nowrap; // 不让换行，不然没有...
+            > .play-icon {
+                background: url('../img/table.png') no-repeat 0 9999px;
+                width: 17px;
+                height: 17px;
+                cursor: pointer;
+                background-position: 0 -103px;
+                float: right;
+            }
+        }
+        > .black-color {
+            color: #333333;
+        }
+    }
+    > .odd {
+        background-color: #f7f7f7;
+    }
+}
