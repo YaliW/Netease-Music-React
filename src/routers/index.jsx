@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import MyMusic from './MyMusic/container';
 import Home from './Home/container';
 import Friends from './Friends/container';
+import Personal from './Personal/container';
 
 class Layout extends Component {
     render () {
@@ -33,6 +34,9 @@ class Layout extends Component {
                 </Route>
                 <Route path="/download">
                     <Friends />
+                </Route>
+                <Route path="/personal">
+                   <Personal />
                 </Route>
             </Switch>
           </Router>
