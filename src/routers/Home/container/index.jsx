@@ -16,7 +16,9 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: 'hot'
+            order: 'hot',
+            offset: 0,
+            limit: 35,
         };
         this.fetchPlayListAsync();
         // 调用异步请求，拿到结果之后，调用setPlayList
@@ -24,10 +26,11 @@ class Home extends Component {
     }
 
     fetchPlayListAsync() {
+        const { offset, limit, order } = this.state;
         const payload = {
-            offset: 0, 
-            limit: 10,
-            order: this.state.order
+            offset: offset, 
+            limit: limit,
+            order: order
         }
         fetchPlayList(payload).then((res) => {
             if (res.status === 200 && res.data.code === 200) {
@@ -47,6 +50,7 @@ class Home extends Component {
     render() {
         const { playList, totalPlay } = this.props;
         const { order } = this.state;
+        console.log(totalPlay)
         return (
             <div className='netease-layout'>
         

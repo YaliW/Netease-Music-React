@@ -29,8 +29,14 @@ class PlayList extends Component {
                     </div>
                 )
             })
+            const itemLen = item.length;
+            const customWidth = itemLen * 140 + (itemLen - 1) * 50;
+
+            const width = {
+                width: itemLen < 5 ? customWidth : ''
+            }
             return (
-                <div className="card-row" key={index}>
+                <div className="card-row" style={width} key={index}>
                     {cardCol}
                 </div>
             )

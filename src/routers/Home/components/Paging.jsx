@@ -7,12 +7,12 @@ class Paging extends Component {
             limit: 35,
             offset: 0,
             currPage: 1,
-            totalPlay: props.data,
         }
     }
 
     get totalPages() {
-        const {totalPlay, limit} = this.state;
+        const {limit} = this.state;
+        const totalPlay = this.props.data;
         return Math.ceil(totalPlay / limit);
     }
 
@@ -21,13 +21,14 @@ class Paging extends Component {
     }
 
     get rightEllipsis() {
-        const {totalPlay, limit, currPage} = this.state;
+        const {limit, currPage} = this.state;
+        const totalPlay = this.props.data;
         return Math.ceil(totalPlay / limit) - currPage > 4;
     }
 
     get centerArr() {
-        const {totalPlay, limit, currPage} = this.state;
-        
+        const {limit, currPage} = this.state;
+        const totalPlay = this.props.data;
         const result = [];
         const left = currPage > 5 ? (this.totalPages < currPage + 4 ? Math.ceil(totalPlay / limit) - 7 : currPage - 3) : 2;
         const isEnough = Math.ceil(totalPlay / limit) > currPage + 3; const right = isEnough ? Math.max(currPage + 3, left + 6) : Math.ceil(totalPlay / limit) - 1;
@@ -43,10 +44,10 @@ class Paging extends Component {
         if (this.leftEllipsis) {
             leftEllipsisDom = <span>...</span>
         }
-        const centerArrDom = this.centerArr.map((item) => {
+        const centerArrDom = this.centerArr.map((item, index) => {
             return (
-                <span key="item">
-                    <a href="/" className={`num-page ${currPage === item ? 'curr-page' : ''}`} onClick={() => this.clickPage(item)}>{item}</a >
+                <span>
+                    <span key={index} className={`num-page ${currPage === item ? 'curr-page' : ''}`} onClick={() => this.clickPage(item)}>{item}</span >
                 </span>
             )
         })
@@ -89,7 +90,8 @@ class Paging extends Component {
         
     }
     clickNextPage() {
-        const {totalPlay, limit, currPage} = this.state;
+        const {limit, currPage} = this.state;
+        const totalPlay = this.props.data;
         if (currPage < Math.ceil(totalPlay / limit)) {
             this.setState({
                 currPage: currPage + 1,
@@ -101,6 +103,7 @@ class Paging extends Component {
     }
 
     handleClick() {
+        console.log(this.state.offset)
         this.props.onChange(this.state.offset);
     }
 }
