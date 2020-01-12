@@ -1,10 +1,11 @@
 import produce from 'immer';  // 使用 immer 库里的 produce 函数实现state的深拷贝，并且更改state中的值，返回更改后的state
 
-import { SET_PLAY_LIST } from './actionTypes'
+import { SET_PLAY_LIST, SET_TOTAL_PLAY } from './actionTypes'
 // 初始 state
 const initState = {
     value: 'init value',
-    playList: []
+    playList: [],
+    totalPlay: 0
 };
 
 // reducer必须是纯函数
@@ -18,6 +19,11 @@ export default (state = initState, action) => {
         case SET_PLAY_LIST:
             return produce(state, nextState => {  // produce 实现深拷贝，也可以使用JSON.parse(JSON.stringfy(***))
                 nextState.playList = action.payload
+            });
+
+        case SET_TOTAL_PLAY:
+            return produce(state, nextState => {  // produce 实现深拷贝，也可以使用JSON.parse(JSON.stringfy(***))
+                nextState.totalPlay = action.payload
             });
         default:
             return state;

@@ -1,0 +1,94 @@
+.paging-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 20px 0;
+    color: #333;
+    font-size: 12px;
+    > .paging-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        > .page {
+            height: 24px;
+            line-height: 24px;
+            text-align: left;
+            margin: 0 3px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            vertical-align: middle;
+            background-image: url('../img/button.png');
+            background-repeat: no-repeat;
+        }
+        > .prev-page {
+            background-position: 0 -560px;
+            padding-left: 22px;
+            width: 47px;
+            &:hover {
+                background-position: 0 -620px; 
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+        > .grey-prev-page {
+            color: #cacaca;
+            text-decoration: none;
+            background-position: 0 -620px; 
+            &:hover {
+                cursor: default;
+            }
+        }
+        > .next-page {
+            background-position: -75px -560px;
+            padding-left: 12px;
+            width: 57px;
+            &:hover {
+                background-position: -75px -590px; 
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+        > .grey-next-page {
+            color: #cacaca;
+            text-decoration: none;
+            background-position: -75px -590px; 
+
+            &:hover {
+                cursor: default;
+            }
+        }
+        .num-page {
+            height: 22px;
+            padding: 0 8px;
+            background-color: #fff;
+            line-height: 22px;
+            margin: 0 3px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            vertical-align: middle;
+            &:hover {
+                border-color: #666; 
+                text-decoration: none; 
+                cursor: pointer;
+            }
+        }
+        .curr-page {
+            border-color: #A2161B;
+            background-position: 0 -650px;
+            color: #fff;
+            background-image: url('../img/button.png');
+            background-repeat: no-repeat;
+            &:hover {
+                border-color: #A2161B;
+                cursor: pointer; 
+            }
+        }
+        a:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,1 +1,2 @@
 export const SET_PLAY_LIST = 'HOME_SET_PLAY_LIST';
+export const SET_TOTAL_PLAY = 'SET_TOTAL_PLAY';

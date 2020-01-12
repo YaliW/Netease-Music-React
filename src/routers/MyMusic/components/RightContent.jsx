@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom';
 
 class RightContent extends Component {
     constructor(props) {
@@ -9,76 +10,12 @@ class RightContent extends Component {
         };
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     const { id } = this.props.data; // ES6 的析构
-    //     console.log(id, this.props, 'id')
-    //     if (id !== nextProps.data.id) {
-    //         const isClosed = this.computeIsClosed();
-    //         console.log(isClosed, 'isClosed')
-    //         if (isClosed) {
-    //             // 初始化是展开的，则isCanOpen is true
-    //             this.setState({
-    //                 opened: !isClosed,
-    //                 isCanOpen: true
-    //             }, ()=> {
-    //                 console.log(this.state)
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 opened: false,
-    //                 isCanOpen: false
-    //             })
-    //         }
-    //     }
-    // }
-
-    handleDescriptionToggle () {
-        const prevOpened = this.state.opened;
-        this.setState({
-            opened: !prevOpened
-        })
-    }
-
-    computeIsClosed() {
-        // console.log(this.refs.descRef, 'refs');
-        // ref 加在普通的元素上，用this.ref.name 获取到的是dom元素
-        // refs:一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例 注意：refs只会在组件渲染完成之后生效，并且它们不是响应式的
-        const descRef = this.refs.descRef;
-        if (descRef) {
-            const clientHeight = descRef.clientHeight; // 可视窗口的高度
-            const scrollHeight = descRef.scrollHeight; // 文档或元素真实的高度，相对 Scroll 的高度
-            console.log(clientHeight, scrollHeight, clientHeight < scrollHeight )
-            const isClosed =  clientHeight < scrollHeight;
-
-            if (isClosed) {
-                // 初始化是展开的，则isCanOpen is true
-                this.setState({
-                    opened: !isClosed,
-                    isCanOpen: true
-                }, ()=> {
-                    console.log(this.state)
-                })
-            } else {
-                this.setState({
-                    opened: false,
-                    isCanOpen: false
-                })
-            }
-        }
-    }
-
+    // 从父组件传入数据的id 作为key, 所以当数据变化时，会重新渲染子组件，会调用 componentDidMount
     componentDidMount() {
-        // const temp = this.computeIsClosed();
-        // console.log(this.descRef.current, 'this.descRef.current')
-        // let initialNode  =  findDomNode(this.refs.descRef);
-        // console.log(this.refs.descRef.clientHeight, 'initialNode')
-
-        // this.computeIsClosed()
+        this.computeIsClosed();
     }
 
     render() {
-        this.computeIsClosed();
-
         const { opened, isCanOpen } = this.state;
         const { data } = this.props;
         const { tags, tracks } = data;
@@ -102,7 +39,6 @@ class RightContent extends Component {
         }
 
         let isCanOpenDom = null;
-        console.log(isCanOpen, isCanOpenDom)
 
         if (isCanOpen) {
             isCanOpenDom = (
@@ -168,12 +104,10 @@ class RightContent extends Component {
     
                     {markContent}
     
-                    <p ref={node => this.descRef = node} className={ `song-detail ${!opened ? 'closed' : ''}` }>
+                    {/* 使用 ref 定位元素 */}
+                    <p ref="descRef" className={ `song-detail ${!opened ? 'closed' : ''}` }>
                         {data.description}
                     </p>
-                    {/* <div v-if="isCanOpen" class="detail-operation-btn" v-on:click="handleDescriptionToggle">
-                        <span>{{ opened ? '收起' : '展开' }}</span>
-                    </div> */}
                     {isCanOpenDom}
                 </div>
             </div>
@@ -195,6 +129,36 @@ class RightContent extends Component {
             {tracksDom}
         </div>
         )
+    }
+
+    handleDescriptionToggle () {
+        const prevOpened = this.state.opened;
+        this.setState({
+            opened: !prevOpened
+        })
+    }
+
+    computeIsClosed() {
+        // ref 加在普通的元素上，用ReactDOM.findDOMNode 获取到的是dom元素
+        const descRef = ReactDOM.findDOMNode(this.refs.descRef);
+        if (descRef) {
+            const clientHeight = descRef.clientHeight; // 可视窗口的高度，包括可是窗口的高度加padding
+            const scrollHeight = descRef.scrollHeight; // 文档或元素真实的高度，相对 Scroll 的高度，包括被scroll 隐藏的内容的真正高度加padding
+            const isClosed =  clientHeight < scrollHeight;
+
+            if (isClosed) {
+                // 初始化是展开的，则isCanOpen is true
+                this.setState({
+                    opened: !isClosed,
+                    isCanOpen: true
+                })
+            } else {
+                this.setState({
+                    opened: false,
+                    isCanOpen: false
+                })
+            }
+        }
     }
 }
 

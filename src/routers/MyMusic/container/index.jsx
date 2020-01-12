@@ -12,6 +12,8 @@ import Player from '../../common/Player'
 import LeftTitle from '../components/LeftTitle'
 import RightContent from '../components/RightContent'
 
+// import './style.scss'
+
 class MyMusic extends React.Component {
     constructor(props) {
         super(props);
@@ -58,7 +60,7 @@ class MyMusic extends React.Component {
     render() {
         const { myPlayList, playListDetail } = this.props;
         return (
-            <div className='netease-layout'>
+            <div className='my-music netease-layout'>
         
                 <div className='header'> 
                     <Header></Header>
@@ -67,7 +69,7 @@ class MyMusic extends React.Component {
                 <section>
                     <div className="my-playlist-container">
                         <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
-                        <RightContent className="right-content" data={playListDetail}></RightContent>
+                        <RightContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail}></RightContent>
                     </div>
                 </section>
                 <div className='footer'>   
