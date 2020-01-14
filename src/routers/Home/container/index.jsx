@@ -12,6 +12,8 @@ import PlayList from '../components/PlayList'
 import Category from '../components/Category'
 import Paging from '../components/Paging'
 
+// class Home extends Component 是使用ES6 的新特性 class 实现继承
+// ES6的继承实现在于使用super关键字调用父类
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -60,6 +62,9 @@ class Home extends Component {
 
                 <section>
                     <div className="playlist-container">
+                        {/* bind 改变了函数体 handleClick 内部this的指向，指向当前组件的this， bind返回一个函数 */}
+                        {/* bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。 */}
+                        {/* 这里不可以使用 apply/call，因为他们没有返回函数 */}
                         <Category type={order} onChange={this.handleClick.bind(this)}></Category>
                         <PlayList data={playList}></PlayList>
                         <Paging data={totalPlay} onChange={this.clickPage.bind(this)}></Paging>
