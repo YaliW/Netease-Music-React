@@ -39,8 +39,10 @@ class Footer extends Component {
         return (
             <div className="wrapper">
                 <div className="footer-container">
-                    <div className="netease-icon">
-                    </div>
+                <div className="netease-icon">
+                    <span>本项目使用Vue全家桶实现网易云音乐的模仿。
+                        <br/>作者王亚丽。仅供学习交流使用。</span>
+                </div>
 
                     <div className="list-container">
                         {itemLists}

@@ -6,13 +6,10 @@ import { setMyPlayList, setPlayListDetail } from '../store/actions'
 import { fetchMyPlayList, fetchPlayListDetail } from '../service'
 import { PlayListDetail, MyPlayList } from '../model/index'
 
-import Header from '../../common/Header'
-import Footer from '../../common/Footer'
-import Player from '../../common/Player'
 import LeftTitle from '../components/LeftTitle'
-import RightContent from '../components/RightContent'
-import AudioPlayer from '../../common/AudioPlayer'
-// import './style.scss'
+import PlayListContent from '../../../components/PlayListContent'
+// import AudioPlayer from '../../../components/AudioPlayer'
+import LayoutWrapper from '../../../layout/index'
 
 class MyMusic extends React.Component {
     constructor(props) {
@@ -77,34 +74,25 @@ class MyMusic extends React.Component {
         }
         
         return (
-            <div className='my-music netease-layout'>
-        
-                <div className='header'> 
-                    <Header></Header>
-                </div>
-
-                <section>
-                    <div className="my-playlist-container">
-                        <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
-                        <RightContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail}></RightContent>
-                    </div>
-                </section>
-                <div className='footer'>   
-                    <Footer></Footer>
-                </div>
-                <div className="player">
-                    {/* <Player></Player> */}
-                    <AudioPlayer
-                        lock="true"
-                        selectedTrack={selectedTrack}
-                        // songlist={this.state.songlist}
-                        // handleSelectionChange={this.trackSelectionChange}
-                        // handleSonglistOpenChange={this.toggleSonglistOpen}
-                        handleSongProcessTime={this.songProcessTimeChange}
-                        // handleLockChange={this.togglePlayerLock}
-                    />
-                </div>
+            <div className="my-music-container">
+                <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
+                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail}></PlayListContent>
             </div>
+
+            
+                // <div className="player">
+                //     {/* <Player></Player> */}
+                //     <AudioPlayer
+                //         lock="true"
+                //         selectedTrack={selectedTrack}
+                //         // songlist={this.state.songlist}
+                //         // handleSelectionChange={this.trackSelectionChange}
+                //         // handleSonglistOpenChange={this.toggleSonglistOpen}
+                //         handleSongProcessTime={this.songProcessTimeChange}
+                //         // handleLockChange={this.togglePlayerLock}
+                //     />
+                // </div>
+           
         );
     }
 }
@@ -126,4 +114,4 @@ const mapDispatchToProps = {
     setPlayListDetail,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyMusic);
+export default LayoutWrapper(connect(mapStateToProps, mapDispatchToProps)(MyMusic));

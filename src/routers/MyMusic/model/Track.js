@@ -1,4 +1,4 @@
-import TimeUtil from '../../common/util/TimeUtil'
+import TimeUtil from '../../../utils/TimeUtil'
 
 class Track {
     constructor(props) {

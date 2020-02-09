@@ -7,7 +7,10 @@
       justify-content: space-between;
       align-items: center;
       height: 188px;
-      > .card-column {
+      a {
+        text-decoration: none;
+      }
+      .navlink-card-column {
         width: 140px;
         > .playlist-cover-image {
           width: 100%;

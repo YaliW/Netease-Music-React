@@ -10,6 +10,7 @@ import MyMusic from './MyMusic/container';
 import Home from './Home/container';
 import Friends from './Friends/container';
 import Personal from './Personal/container';
+import PlayListDetail from './PlayListDetail/container';
 
 class Layout extends Component {
     render () {
@@ -19,6 +20,9 @@ class Layout extends Component {
                 {/* exact 匹配整个url */}
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route exact path="/playlistDetail/:id">
+                    <PlayListDetail />
                 </Route>
                 <Route path="/my_music">
                     <MyMusic />

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './style.scss';
-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Player from '../components/Player';

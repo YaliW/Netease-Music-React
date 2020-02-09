@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
 
-class RightContent extends Component {
+class PlayListContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -162,4 +162,4 @@ class RightContent extends Component {
     }
 }
 
-export default RightContent;
+export default PlayListContent;
