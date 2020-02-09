@@ -10,7 +10,7 @@ import MyMusic from './MyMusic/container';
 import Home from './Home/container';
 import Friends from './Friends/container';
 import Personal from './Personal/container';
-import PlayListDetail from './PlayListDetail/container';
+import PlayListDetailPage from './PlayListDetailPage/container';
 
 class Layout extends Component {
     render () {
@@ -22,7 +22,7 @@ class Layout extends Component {
                     <Home />
                 </Route>
                 <Route exact path="/playlistDetail/:id">
-                    <PlayListDetail />
+                    <PlayListDetailPage />
                 </Route>
                 <Route path="/my_music">
                     <MyMusic />

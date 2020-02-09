@@ -1,4 +1,4 @@
-import {Track} from '../model';
+import {Track} from '../routers/MyMusic/model';
 
 class PlayListDetail {
     constructor(props) {
