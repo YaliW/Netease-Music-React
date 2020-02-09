@@ -21,10 +21,40 @@ class Home extends Component {
             order: 'hot',
             offset: 0,
             limit: 35,
+
+            value: 0,
         };
         this.fetchPlayListAsync();
         // 调用异步请求，拿到结果之后，调用setPlayList
-        
+    }
+
+    componentDidMount() {
+        this.setState((state) => {
+            return {value: state.value + 1}
+        }, () => {
+        });
+
+        this.setState((state) => {
+            return {value: state.value + 1}
+        }, () => {
+        });
+
+        setTimeout(() => {
+            this.setState({
+                value: this.state.value + 1
+            });
+            console.log(this.state.value, 'thrid')
+        })
+
+        setTimeout(() => {
+            this.setState({
+                value: this.state.value + 1
+            });
+            console.log(this.state.value, 'fourth')
+        })
+    }
+    componentDidUpdate() {
+        console.log(this.state.value, 'update')
     }
 
     fetchPlayListAsync() {
@@ -52,7 +82,6 @@ class Home extends Component {
     render() {
         const { playList, totalPlay } = this.props;
         const { order } = this.state;
-        console.log(totalPlay)
         return (
             <div className='netease-layout'>
         

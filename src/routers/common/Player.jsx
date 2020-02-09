@@ -9,7 +9,7 @@ class Player extends Component {
     render() {
         return (
             <div className="player-container-wrapper">
-                <div className="player-container">
+                {/* <div className="player-container">
                     <div className="btn">
                         <span className="prev-song"></span>
                         <span className="pause"></span>
@@ -36,7 +36,11 @@ class Player extends Component {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
+                <audio
+                    src="https://music.163.com/song/media/outer/url?id=34341349.mp3" draggable="true" controls="controls"
+                    
+                />
             </div>
         )
     }

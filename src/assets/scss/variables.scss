@@ -1,0 +1,40 @@
+/*
+over wirite
+NJU theme
+*/
+$font-family: "Microsoft Yahei";
+$font-size-base: 14px;
+$font-size-h1: floor($font-size-base * 3.33);
+$font-size-h2: floor($font-size-base * 1.67);
+$font-size-h3: ceil($font-size-base * 1.33);
+$font-size-small: 12px;
+$body-bg: #f9f9f9;
+$font-size-h1: 28px;
+$text-color: #222;
+$nju-section-color: $text-color;
+$nju-striped-color: #f3f3f3;
+$nju-section-bg: #e0e0e0;
+/*
+NM Theme
+*/
+$nm-separate-color: #c4c3c4;
+$nm-app-selected-color: #e1e1e1;
+$nm-app-darker-bg: #f5f4f5;
+
+$nm-app-color: #b02101;
+$nm-app-header-height: 42px;
+$nm-app-header-backgroud: #2f2f2f;
+$nm-app-footer-height: 60px;
+$nm-app-sidebar-width: 20%;
+$nm-app-base-height: 200px;
+
+$nm-list-item-height: 30px;
+$nm-list-item-width: 100px;
+$nm-player-songlist-height: 300px;
+$nm-player-songlist-width: 980px;
+$nm-player-songlist-header-height: 40px;
+$nm-player-songlist-header-width: 560px;
+
+$nm-player-color: #e8e8e8;
+$nm-player-light-color: #9b9b9b;
+$nm-player-songlist-background-color: #151515;

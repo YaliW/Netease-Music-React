@@ -11,14 +11,19 @@ import Footer from '../../common/Footer'
 import Player from '../../common/Player'
 import LeftTitle from '../components/LeftTitle'
 import RightContent from '../components/RightContent'
-
+import AudioPlayer from '../../common/AudioPlayer'
 // import './style.scss'
 
 class MyMusic extends React.Component {
     constructor(props) {
         super(props);
+        this.songProcessTimeChange = this.songProcessTimeChange.bind(this);
+
         this.state = {
-            playListId: null
+            playListId: null,
+            songlist: [],
+            songProcessTime: null,
+
         };
 
         const payload = {
@@ -56,9 +61,21 @@ class MyMusic extends React.Component {
             playListId: param
         }, this.fetchPlayListDetailAsync)
     }
+
+    songProcessTimeChange(time) {
+        this.setState({
+            songProcessTime: time,
+        });
+    }
     
     render() {
         const { myPlayList, playListDetail } = this.props;
+        const tracks = playListDetail ? playListDetail.tracks : [];
+        let selectedTrack = null;
+        if (tracks) {
+            selectedTrack = tracks[0];
+        }
+        
         return (
             <div className='my-music netease-layout'>
         
@@ -76,7 +93,16 @@ class MyMusic extends React.Component {
                     <Footer></Footer>
                 </div>
                 <div className="player">
-                    <Player></Player>
+                    {/* <Player></Player> */}
+                    <AudioPlayer
+                        lock="true"
+                        selectedTrack={selectedTrack}
+                        // songlist={this.state.songlist}
+                        // handleSelectionChange={this.trackSelectionChange}
+                        // handleSonglistOpenChange={this.toggleSonglistOpen}
+                        handleSongProcessTime={this.songProcessTimeChange}
+                        // handleLockChange={this.togglePlayerLock}
+                    />
                 </div>
             </div>
         );

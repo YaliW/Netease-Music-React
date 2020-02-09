@@ -1,3 +1,5 @@
+import TimeUtil from '../../common/util/TimeUtil'
+
 class Track {
     constructor(props) {
         // 数据处理
@@ -6,7 +8,8 @@ class Track {
         this.name = props.name;
         this.author = props.ar;
         this.collection = props.al.name;
-        this.durationTime = props.dt;
+        this.durationTime = TimeUtil.formateTime(props.dt);
+        this.blurPicUrl = props.al.picUrl;
     }
 
     static fromJS = (value) => {
