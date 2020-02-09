@@ -6,8 +6,8 @@
 @import './Player';
 @import './PlayList';
 @import './Category';
-@import './LeftTitle';
-@import './RightContent';
+@import './[LeftTitle].module';
+@import './[RightContent].module';
 @import './Paging';
 @import './AudioPlayer';
 

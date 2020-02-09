@@ -1,0 +1,56 @@
+.netease-layout {
+    width: 100%;
+    height: 100vh; // 窗口高度的百分比
+  
+    // 3: 水平居中方法三，use flex
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  
+    > .header {
+        width: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 70px;
+        background: #242424;
+        color: white;
+        
+    }
+  
+    section {
+        width: 980px;
+        // min-height: 700px;
+        background-color: #000;
+        flex: 1 1 0;
+        // 1： 水平居中方法一，margin:auto法，根据宽度水平居中元素
+        // margin: auto;
+  
+        // 2: 水平居中方法二， use transform
+        // margin-left: 50%;
+        // transform: translate(-50%);
+        
+        // box-sizing: content-box; // 默认，设置的width 作用于content
+        box-sizing: border-box; // 总的展示宽度是 content + border + margin
+        margin-top: 5px;
+    }
+    > .footer {
+        width: 100%;
+        background-color: #f2f2f2;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 90px;
+  
+        margin-bottom: 47px; // 为了腾出位置 让播放器一直浮动在底部
+    }
+  
+    > .player {
+        width: 100%;
+        height: 47px;
+        position: fixed; // 为了腾出位置 让播放器一直浮动在底部
+        bottom: 0;
+    }
+  }
+  html, body {
+    margin: 0px;
+  }

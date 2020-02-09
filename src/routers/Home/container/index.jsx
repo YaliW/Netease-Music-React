@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { setPlayList, setTotalPlay } from '../store/actions';
 import { TopPlayList } from '../model';
 import { fetchPlayList } from '../service';
-
-import Header from '../../common/Header'
-import Footer from '../../common/Footer'
-import Player from '../../common/Player'
+import LayoutWrapper from '../../../layout/index';
 import PlayList from '../components/PlayList'
 import Category from '../components/Category'
 import Paging from '../components/Paging'
@@ -21,40 +18,10 @@ class Home extends Component {
             order: 'hot',
             offset: 0,
             limit: 35,
-
-            value: 0,
         };
         this.fetchPlayListAsync();
         // 调用异步请求，拿到结果之后，调用setPlayList
-    }
-
-    componentDidMount() {
-        this.setState((state) => {
-            return {value: state.value + 1}
-        }, () => {
-        });
-
-        this.setState((state) => {
-            return {value: state.value + 1}
-        }, () => {
-        });
-
-        setTimeout(() => {
-            this.setState({
-                value: this.state.value + 1
-            });
-            console.log(this.state.value, 'thrid')
-        })
-
-        setTimeout(() => {
-            this.setState({
-                value: this.state.value + 1
-            });
-            console.log(this.state.value, 'fourth')
-        })
-    }
-    componentDidUpdate() {
-        console.log(this.state.value, 'update')
+        
     }
 
     fetchPlayListAsync() {
@@ -82,31 +49,17 @@ class Home extends Component {
     render() {
         const { playList, totalPlay } = this.props;
         const { order } = this.state;
+        console.log(totalPlay)
         return (
-            <div className='netease-layout'>
-        
-                <div className='header'> 
-                    <Header></Header>
-                </div>
-
-                <section>
-                    <div className="playlist-container">
-                        {/* bind 改变了函数体 handleClick 内部this的指向，指向当前组件的this， bind返回一个函数 */}
-                        {/* bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。 */}
-                        {/* 这里不可以使用 apply/call，因为他们没有返回函数 */}
-                        <Category type={order} onChange={this.handleClick.bind(this)}></Category>
-                        <PlayList data={playList}></PlayList>
-                        <Paging data={totalPlay} onChange={this.clickPage.bind(this)}></Paging>
-                    </div>
-                </section>
-                <div className='footer'>   
-                    <Footer></Footer>
-                </div>
-                <div className="player">
-                    <Player></Player>
-                </div>
+            <div className="playlist-container">
+                {/* bind 改变了函数体 handleClick 内部this的指向，指向当前组件的this， bind返回一个函数 */}
+                {/* bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。 */}
+                {/* 这里不可以使用 apply/call，因为他们没有返回函数 */}
+                <Category type={order} onChange={this.handleClick.bind(this)}></Category>
+                <PlayList data={playList}></PlayList>
+                <Paging data={totalPlay} onChange={this.clickPage.bind(this)}></Paging>
             </div>
-        )
+        );
     }
 
     clickPage(param) {
@@ -143,4 +96,4 @@ const mapDispatchToProps = {
 };
 
 // connect 是高阶组件
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default LayoutWrapper(connect(mapStateToProps, mapDispatchToProps)(Home));
