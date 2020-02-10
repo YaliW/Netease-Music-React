@@ -22,11 +22,11 @@ class PlayList extends Component {
 
     render() {
         const cardRow = this.formateData.map((item, index) => {
-            const cardCol = item.map((subitem, index) => {
+            const cardCol = item.map((subitem, subIndex) => {
                 const path = `/playlistDetail/${subitem.id}`;
                 return (
                     <NavLink to={path} activeClassName="selected">
-                        <div className="navlink-card-column" key={index}>
+                        <div className="navlink-card-column" key={subIndex}>
                             <div className="playlist-cover-image">
                                 <img src={subitem.coverImage} alt=""/>
                                 <div className="play-count">播放量： {subitem.playCount}</div>
