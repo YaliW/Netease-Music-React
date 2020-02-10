@@ -49,7 +49,6 @@ class Home extends Component {
     render() {
         const { playList, totalPlay } = this.props;
         const { order } = this.state;
-        console.log(totalPlay)
         return (
             <div className="home-playlist-container">
                 {/* bind 改变了函数体 handleClick 内部this的指向，指向当前组件的this， bind返回一个函数 */}

@@ -15,7 +15,6 @@ export default (state = initState, action) => {
     switch (action.type) {
         
         case SET_PLAY_LIST_DETAIL:
-            console.log(action, 'reducer action')
             return produce(state, nextState => {  // produce 实现深拷贝，也可以使用JSON.parse(JSON.stringfy(***))
                 nextState.playListDetail = action.payload
             });

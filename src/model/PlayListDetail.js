@@ -16,7 +16,14 @@ class PlayListDetail {
         // this.tracks = props.tracks;
         this.tracks = Track.fromJS(props.tracks);
         this.createTime = props.createTime;
-
+        // this.songUrlMap = props.songUrlList.reduce((prev, curr) => {
+        //     prev[curr.id] = curr.url;
+        //     return prev;
+        // }, {});
+        this.subscribers = props.subscribers.reduce((prev, curr) => {
+            prev.push(curr.avatarUrl);
+            return prev;
+        }, [])
     }
 
     // fromJS 是全局使用，所以写到原型链上面

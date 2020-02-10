@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import RightSubscribors from '../components/RightSubscribors';
+import RightSubscribers from '../components/RightSubscribers';
 import PlayListContent from '../../../components/PlayListContent';
 import LayoutWrapper from '../../../layout/index';
 import { setPlayListDetail } from '../store/actions'
@@ -13,9 +13,8 @@ class PlayListDetailPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playListId: null,
+            playListId: window.location.pathname.split('/')[2],
         };
-
         this.fetchPlayListDetailAsync();
     }
 
@@ -23,8 +22,8 @@ class PlayListDetailPage extends React.Component {
         const { playListId } = this.state;
         // if (playListId) {
             const payload = {
-                // id: playListId
-                id: 986184445
+                id: playListId
+                // id: 986184445
             };
             fetchPlayListDetail(payload).then((res) => {
                 if (res.status === 200 && res.data.code === 200) {
@@ -36,12 +35,11 @@ class PlayListDetailPage extends React.Component {
     }
 
     render() {
-        const { playListDetail } = this.props;
-        console.log(this.props, 'props');
+        const { playListDetail, subscribers } = this.props;
         return (
             <div className="playlist-detail-container">
-                <PlayListContent className="left" data={playListDetail}></PlayListContent>
-                <RightSubscribors className="right"></RightSubscribors>
+                <PlayListContent className="left" data={playListDetail} key={playListDetail.id}></PlayListContent>
+                <RightSubscribers className="right" data={subscribers}></RightSubscribers>
             </div>
         );
     }
@@ -50,11 +48,12 @@ class PlayListDetailPage extends React.Component {
 PlayListDetailPage.propTypes = {
     playListDetail: PropTypes.object.isRequired,
     setPlayListDetail: PropTypes.func.isRequired,
-
+    subscribers: PropTypes.array,
 }
 
 const mapStateToProps = (state) => ({
     playListDetail: state.playlistDetailPage.playListDetail,
+    subscribers: state.playlistDetailPage.playListDetail.subscribers,
 });
 
 const mapDispatchToProps = {

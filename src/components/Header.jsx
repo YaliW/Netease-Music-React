@@ -14,9 +14,21 @@ topBar: [
 class Header extends Component {
     render() {
         const itemLists = TopBarOptions.topBar.map((item) => {
+            // const isActive 
             return (
                 // NavLink 当在当前url时，activeClassName 会生效
-                <NavLink to={item.url} activeClassName="selected" className="top-bar-item" key={item.title}>
+                <NavLink isActive={(match, location) => {
+                    let regex = /playlistDetail/;
+                    if (item.url === '/' && regex.test(location.pathname)) {
+                        return true;
+                    } else {
+                        if (!match) {
+                            return false;
+                        } else {
+                            return match.isExact;
+                        }
+                    }
+                    }} to={item.url} activeClassName="selected" className="top-bar-item" key={item.title}>
                     <em>{item.title}</em>
                     <sub>&nbsp;</sub>
                 </NavLink>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 
 class PlayListContent extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class PlayListContent extends Component {
 
     render() {
         const { opened, isCanOpen } = this.state;
-        const { data } = this.props;
+        const { data, className } = this.props;
         const { tags, tracks } = data;
 
         let markContent = null;
@@ -77,7 +78,7 @@ class PlayListContent extends Component {
         }
         
         return (
-            <div className="song-content-container">
+            <div className={classnames("song-content-container", className)}>
             <div className="song-introduction">
                 <div className="image-border">
                     <img src={data.coverImgUrl} alt="" />

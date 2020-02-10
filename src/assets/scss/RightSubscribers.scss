@@ -1,0 +1,26 @@
+.right-subscribors-container {
+    width: 100%;
+    padding: 20px;
+    border-left: 1px solid #dfdfdf;
+    > .title {
+        font-size: 12px;
+        width: 200px;
+        color: #333333;
+        height: 23px;
+        text-align: left;
+        margin-bottom: 20px;
+        border-bottom: solid 1px #ccc;
+    }
+    > .content-list {
+        > .row {
+            display: flex;
+            justify-content: space-between;
+            > .column {
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
