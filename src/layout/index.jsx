@@ -17,7 +17,7 @@ export default function Wrapper(WrapperComponent) {
         }
 
         render() {
-            const { footerVisible } = this.state;
+            const { footerVisible, autovisible } = this.state;
             return <div className='netease-layout'>
                 <div className='header'>
                     <Header></Header>
@@ -31,7 +31,7 @@ export default function Wrapper(WrapperComponent) {
                 <div className="footer-auto-visible">
                     <div className={classnames("player-footer-container", (footerVisible ? "visible" : ""))} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
                         <div className="updn">
-                            <div className="icon lock"></div>
+                            <div className={classnames("icon", (autovisible ? "lock" : ""))} onClick={this.handleLock.bind(this)}></div>
                         </div>
                         <div className="updn-right"></div>
                         <div className="bg" title="背景"></div>
@@ -58,6 +58,14 @@ export default function Wrapper(WrapperComponent) {
             event.stopPropagation();
             this.setState({
                 footerVisible: false
+            })
+        }
+
+        handleLock(event) {
+            event.preventDefault(); 
+            this.setState({
+                autovisible: !this.state.autovisible,
+                footerVisible: true,
             })
         }
     };
