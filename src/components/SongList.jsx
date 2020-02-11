@@ -10,14 +10,13 @@ class SongList extends Component {
     }
 
     render() {
-        const { data } = this.props;
-        console.log(data, 'data')
+        const { data, onChange } = this.props;
         const songItem = data.map((item) => {
             return (
                 <div className={classnames('song-item')} key={item.id}>
                     <div className="common name" >{item.name}</div>
                     <div className="common blank">
-                        <div className="delete"></div>
+                        <div className="delete" onClick={onChange.bind(this, item.id)}></div>
                     </div>
                     <div className="common author">{item.author[0].name}</div>
                     <div className="common duration">{item.durationTime}</div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { localStorageGetItem } from '../utils';
+import { localStorageGetItem, localStorageSetItem } from '../utils';
 import SongList from './SongList';
 
 class SongListPanel extends Component {
@@ -22,7 +22,7 @@ class SongListPanel extends Component {
     }
 
     render() {
-        const len = 10;
+        const len = this.state.dataArr.length;
         const songName = 'song name';
         const { onChange } = this.props;
         return (
@@ -33,11 +33,23 @@ class SongListPanel extends Component {
                     <div className="close" onClick={onChange.bind(this)}></div>
                 </div>
                 <div className="content">
-                    <SongList data={this.playSongList}></SongList>
+                    <SongList data={this.playSongList} onChange={this.deleteSongList.bind(this)}></SongList>
                     {/* <Lyric :lyric="lyric" :playedTimeSec="playedTimeSec"></Lyric> */}
                 </div>
             </div>
         )
+    }
+
+    deleteSongList(param) {
+        const playingSongObj = localStorageGetItem('playingSongObj');
+        const playingSongIdArr = localStorageGetItem('playingSongIdArr');
+
+        delete playingSongObj[param];
+        const index = playingSongIdArr.indexOf(param);
+        playingSongIdArr.splice(index, 1);
+
+        localStorageSetItem('playingSongObj', playingSongObj);
+        localStorageSetItem('playingSongIdArr', playingSongIdArr);
     }
 
 }
