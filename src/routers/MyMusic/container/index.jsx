@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
 import { setMyPlayList, setPlayListDetail } from '../store/actions'
-import { fetchMyPlayList, fetchPlayListDetail } from '../service'
+import { fetchMyPlayList, fetchPlayListDetail, fetchSongUrl } from '../service'
 import { PlayListDetail, MyPlayList } from '../model/index'
 
 import LeftTitle from '../components/LeftTitle'
@@ -42,12 +42,19 @@ class MyMusic extends React.Component {
         if (playListId) {
             const payload = {
                 id: playListId
-                // id: 986184445
             };
             fetchPlayListDetail(payload).then((res) => {
                 if (res.status === 200 && res.data.code === 200) {
-                    const { playlist } = res.data;
-                    this.props.setPlayListDetail(PlayListDetail.fromJS(playlist))
+
+                    const trackIds = res.data.playlist.trackIds.map(item => item.id).join(',');
+                    const songUrlParam = {id: trackIds};
+                    const playListDetailRes = res.data.playlist;
+                    fetchSongUrl(songUrlParam).then((res1) => {
+                      if (res1.status === 200 && res1.data.code === 200) {
+                        const combineRes = Object.assign({}, playListDetailRes, {songUrlList: res1.data.data});
+                        this.props.setPlayListDetail(PlayListDetail.fromJS(combineRes))
+                      }
+                    })
                 }
             });
         }

@@ -1,0 +1,81 @@
+.song-list-container-left {
+    width: 564px;
+    overflow-y: scroll;
+    height: 259px;
+    border-right: solid 1px #333;
+    > .song-item {
+        display: flex;
+        padding-left: 25px;
+        height: 28px;
+        align-items: center;
+        &:hover {
+            background-color: #000000;
+        }
+        &:hover div {
+            color: #ffffff !important;
+        }
+        > .common {
+            padding-left: 10px;
+            text-align: left;
+            font-size: 12px;
+        }
+        > .name {
+            width: 266px;
+            color: #cccccc;
+            cursor: pointer;
+            &:hover {
+                color: #ffffff !important;
+            }
+        }
+        > .blank {
+            width: 88px;  
+            &:hover .delete{
+                visibility: visible;
+                cursor: pointer;
+            }  
+            > .delete {
+                width: 13px;
+                height: 16px;
+                float: right;
+                background-image: url('../img/playlist.png');
+                background-position: -51px 0;
+                background-repeat: no-repeat;
+                visibility: hidden; 
+            }
+        }
+        > .author {
+            width: 100px;
+            color: #9b9b9b;
+            overflow: hidden;
+            text-overflow: ellipsis; // ...
+            white-space: nowrap; // 不让换行，不然没有...
+        }
+        > .duration {
+            width: 45px;
+            color: #666666;
+        }
+        > .source {
+            width: 43px;
+            padding-left: 6px;
+            text-align: right;
+            a {
+                display: inline-block;
+                margin: 7px 10px 0 0;
+                width: 14px;
+                height: 16px;
+                background-image: url('../img/playlist.png');
+                background-position: -80px 0px;
+                background-repeat: no-repeat;
+                // cursor: pointer;
+            }
+            
+        }
+    }
+    > .selected {
+        background-color: #000000;
+        font-weight: bold;
+        > .common {
+            color: #ffffff;
+        }
+    }
+}

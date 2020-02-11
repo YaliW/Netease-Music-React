@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Player from '../components/Player';
+import SongListPanel from '../components/SongListPanel';
 
 export default function Wrapper(WrapperComponent) {
     class Layout extends Component {
@@ -13,11 +14,21 @@ export default function Wrapper(WrapperComponent) {
             this.state = {
                 autovisible: false, // 控制 lock，默认unlock
                 footerVisible: false,  // 控制是否显示播放器，默认隐藏
+                animationState: false,  // 控制动画，当前动画完成后，才会执行新的动画
+                showSongList: false,  // 控制播放列表的展示
             }
         }
 
         render() {
-            const { footerVisible, autovisible } = this.state;
+            const { footerVisible, autovisible, showSongList } = this.state;
+            let songListComponent = null;
+            if (showSongList) {
+                songListComponent = (
+                    <div className="song-list">
+                        <SongListPanel onChange={this.closeSongListPanel.bind(this)}></SongListPanel>
+                    </div>
+                )
+            }
             return <div className='netease-layout'>
                 <div className='header'>
                     <Header></Header>
@@ -37,28 +48,47 @@ export default function Wrapper(WrapperComponent) {
                         <div className="bg" title="背景"></div>
                         <div className="hand" title="展开播放器"></div>
                         <div className="player">
-                            <Player></Player>
+                            <Player onChange={this.clickShowSongList.bind(this)}></Player>
                         </div>
                     </div>
+                    {songListComponent}
                 </div>
-            </div>;
+            </div>
         }
 
         handleMouseEnter(event) {
             event.preventDefault();
             event.stopPropagation();
-            this.setState({
-                footerVisible: true
-            })
-            console.log(this.footerVisible, event);
+            const { footerVisible, autovisible, animationState } = this.state;
+            if (!footerVisible && !autovisible && !animationState) {
+                this.setState({
+                    footerVisible: true,
+                    animationState: true,
+                });
+                setTimeout(() => {
+                    this.setState({
+                        animationState: false,
+                    })
+                }, 400)
+            }
         }
 
         handleMouseLeave(event) {
             event.preventDefault();
             event.stopPropagation();
-            this.setState({
-                footerVisible: false
-            })
+            const { footerVisible, autovisible, animationState, showSongList } = this.state; 
+            if (footerVisible && !autovisible && !animationState && !showSongList) {
+                this.setState({
+                    footerVisible: false,
+                    animationState: true,
+                });
+                setTimeout(() => {
+                    this.setState({
+                        animationState: false
+                    })
+                })
+            }
+            
         }
 
         handleLock(event) {
@@ -67,6 +97,26 @@ export default function Wrapper(WrapperComponent) {
                 autovisible: !this.state.autovisible,
                 footerVisible: true,
             })
+        }
+
+        clickShowSongList() {
+            const { showSongList } = this.state;
+            this.setState({
+                showSongList: !showSongList,
+                footerVisible: true,
+            });
+        }
+
+        closeSongListPanel() {
+            this.setState({
+                showSongList: false,
+            });
+            const { footerVisible, autovisible } = this.state;
+            if (footerVisible && !autovisible) {
+                this.setState({
+                    footerVisible: false,
+                })
+            }
         }
     };
 

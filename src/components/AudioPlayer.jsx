@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TimeUtil from '../utils/TimeUtil';
+import TimeUtil from '../utils';
 
 /* global document $:true */
 

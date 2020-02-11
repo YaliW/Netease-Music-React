@@ -13,6 +13,10 @@ export default {
     getPlayListDetail: {
         url: `${prefix}/playlist/detail`,
         method: 'GET'
-    }
+    },
+    getSongUrl: {
+        url: `${prefix}/song/url`,
+        method: 'GET'
+    },
 
 };   

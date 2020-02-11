@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
+import { localStorageGetItem, localStorageSetItem} from '../utils'
 
 class PlayListContent extends Component {
     constructor(props) {
@@ -98,7 +99,7 @@ class PlayListContent extends Component {
                         <div className="create-time">{data.createTime} 创建</div>
                     </div>
     
-                    <div className="song-play-button">
+                    <div className="song-play-button" onClick={this.addToPlayingSongList.bind(this)}>
                         <div className="play-icon"></div>
                         <div className="play">播放</div>
                     </div>
@@ -160,6 +161,51 @@ class PlayListContent extends Component {
                 })
             }
         }
+    }
+
+    addToPlayingSongList() {
+        const { tracks, songUrlMap, coverImgUrl, playListId } = this.props.data;
+        // const songUrlMap = this.myPlayListDetail.songUrlMap;
+        // const coverImgUrl = this.myPlayListDetail.coverImgUrl;
+        // const playListId = this.myPlayListDetail.id;
+        const playingSongObj = localStorageGetItem('playingSongObj');
+        let playingSongIdArr = localStorageGetItem('playingSongIdArr');
+        if (Object.keys(playingSongIdArr).length === 0) {
+            playingSongIdArr = [];
+        }
+
+        tracks.forEach((item) => {
+            const id = item.id;
+            if (!playingSongObj.hasOwnProperty(id)) {
+                const url = songUrlMap[id];
+                item['src'] = url;
+                item['coverImgUrl'] = coverImgUrl;
+                item['playListId'] = playListId;
+                playingSongObj[id] = item;
+                playingSongIdArr.push(id);
+            }
+        });
+        localStorageSetItem('playingSongObj', playingSongObj);
+        localStorageSetItem('playingSongIdArr', playingSongIdArr);
+        
+        // if (tracks.length > 0) {
+        //     const track = tracks[0];
+        //     const id = track.id;
+        //     const coverImgUrl = this.myPlayListDetail.coverImgUrl;
+        //     const src = this.myPlayListDetail.songUrlMap[track.id];
+        //     const playListId = this.myPlayListDetail.id;
+        //     const author = track.author;
+        //     const name = track.name;
+        //     const payload = {
+        //         id: id,
+        //         src: src,
+        //         coverImgUrl: coverImgUrl,
+        //         songName: name,
+        //         playListId: playListId,
+        //         author: author
+        //     }
+        //     this.getPlayingSongInfo(payload);
+        // }
     }
 }
 

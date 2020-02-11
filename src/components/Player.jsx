@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 
 class Player extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class Player extends Component {
         }
     }
     render() {
+        const { onChange } = this.props;
         return (
             <div className="player-container-wrapper">
                 <div className="player-container">
@@ -43,7 +45,7 @@ class Player extends Component {
                     <div className="operation-btn">
                         <div className="volume"></div>
                         <div className="repeat"></div>
-                        <div className="play-list-icon">
+                        <div className="play-list-icon" onClick={onChange.bind(this)}>
                             <span>62</span>
                         </div>
                     </div>
@@ -52,6 +54,14 @@ class Player extends Component {
             </div>
         )
     }
+}
+
+Player.defaultProps = {
+    onChange: () => {}
+}
+
+Player.propTypes = {
+    onChange: PropTypes.func
 }
 
 export default Player;
