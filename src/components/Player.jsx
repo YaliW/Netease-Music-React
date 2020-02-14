@@ -1,14 +1,26 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
+import { localStorageGetItem } from '../utils';
 
 class Player extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            songListLen: localStorageGetItem('playingSongIdArr').length
         }
     }
+
+    componentDidMount() {
+        window.addEventListener('setItem', () => {
+            this.setState({
+                songListLen: localStorageGetItem('playingSongIdArr').length
+            })
+        })
+    }
+
     render() {
         const { onChange } = this.props;
+        const { songListLen } = this.state;
         return (
             <div className="player-container-wrapper">
                 <div className="player-container">
@@ -46,7 +58,7 @@ class Player extends Component {
                         <div className="volume"></div>
                         <div className="repeat"></div>
                         <div className="play-list-icon" onClick={onChange.bind(this)}>
-                            <span>62</span>
+                            <span>{songListLen}</span>
                         </div>
                     </div>
                 </div>

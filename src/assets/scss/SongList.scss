@@ -28,11 +28,7 @@
             }
         }
         > .blank {
-            width: 88px;  
-            &:hover .delete{
-                visibility: visible;
-                cursor: pointer;
-            }  
+            width: 88px;   
             > .delete {
                 width: 13px;
                 height: 16px;
@@ -71,6 +67,10 @@
             
         }
     }
+    .song-item:hover .delete{
+        visibility: visible;
+        cursor: pointer;
+    } 
     > .selected {
         background-color: #000000;
         font-weight: bold;
