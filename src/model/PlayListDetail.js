@@ -26,7 +26,9 @@ class PlayListDetail {
         }, [])
     }
 
-    // fromJS 是全局使用，所以写到原型链上面
+    // fromJS 是静态方法，是写到原型链上面
+    // 目的是不需要实例化就可以拿到 static 的属性
+    // 直接class.fromJS 就可以使用
     static fromJS = (value) => {
         // TODO
         // 处理原生数据，返回实例对象

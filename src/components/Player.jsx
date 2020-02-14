@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import { localStorageGetItem } from '../utils';
+import { audio } from '../utils';
+import EventEmitter from 'eventemitter3'
 
 class Player extends Component {
     constructor(props) {
@@ -8,6 +10,7 @@ class Player extends Component {
         this.state = {
             songListLen: localStorageGetItem('playingSongIdArr').length
         }
+        console.log(audio, 'import audio')
     }
 
     componentDidMount() {
@@ -15,7 +18,8 @@ class Player extends Component {
             this.setState({
                 songListLen: localStorageGetItem('playingSongIdArr').length
             })
-        })
+        });
+        audio.initialPlayer();  // on play
     }
 
     render() {
@@ -27,7 +31,7 @@ class Player extends Component {
                     <div className="left">
                         <div className="btn">
                             <span className="prev-song"></span>
-                            <span className="pause"></span>
+                            <span className="pause" onClick={() => this.handlePlay()}></span>
                             <span className="next-song"></span> 
                         </div>
 
@@ -65,6 +69,16 @@ class Player extends Component {
                 {/* <audio src="https://music.163.com/song/media/outer/url?id=34341349.mp3" draggable="true" controls="controls" /> */}
             </div>
         )
+    }
+
+    handlePlay() {
+        const param = {
+            src: "https://music.163.com/song/media/outer/url?id=34341349.mp3",
+            autoplay: true,
+        }
+        audio.emitSetSrc(param);
+        audio.emitPlay(); // emit play
+        console.log('click play')
     }
 }
 
