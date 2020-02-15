@@ -18,7 +18,6 @@ class Player extends Component {
         if (playingSong.id !== nextProps.playingSong.id) {
             this.initialSong(nextProps.playingSong);
         }
-        console.log(nextProps.playingSong, 'nextProps.playingSong')
     }
 
     componentDidMount() {
