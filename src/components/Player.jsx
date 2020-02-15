@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { localStorageGetItem } from '../utils';
 import { audio } from '../utils';
 import classnames from 'classnames';
-import { setIsPlay } from '../layout/store/actions';
+import getAudioEvent from '../config/AudioEvent'
 
 class Player extends Component {
     constructor(props) {
         super(props);
         this.state = {
             songListLen: localStorageGetItem('playingSongIdArr').length,
+            audioEvent: getAudioEvent()
         }
     }
 
@@ -27,6 +28,11 @@ class Player extends Component {
             })
         });
         audio.initialPlayer();  // on play
+        const { audioEvent } = this.state;
+            audio.onTimeUpdate((options) => {
+                console.log(options, 'options')
+                // this.onTimeUpdate(options);
+            })
     }
 
     render() {
@@ -96,7 +102,28 @@ class Player extends Component {
             autoplay: true,
         }
         audio.emitSetSrc(payload); 
+        audio.emitTimeUpdate();
         setIsPlay(true);
+    }
+
+    onTimeUpdate(param) {
+        console.log(param, 'PARAM')
+        // this.playedTimeSec = param.time;
+        // const duration = Math.round(param.duration);
+        // // 解决动画卡顿的方法是计算得到每秒的宽度，然后动画时间设置为1秒
+        // // this.playedTimeSec 当前播放时间每秒会更新，当更新的时候计算ratio，每秒会更新
+        // const ratio = this.playedTimeSec / duration;
+        // this.playedTime = this.convertTimeFormat(this.playedTimeSec);
+        // this.totalTime = this.convertTimeFormat(duration);
+        // this.playedWidth = this.totalWidth * ratio + 'px';
+    }
+
+    convertTimeFormat(time) {
+        const mins = Math.floor(time / 60);
+        const minsFormat = mins < 10 ? '0'+mins : mins;
+        const secs = time % 60;
+        const secsFormat = secs < 10 ? '0'+secs : secs;
+        return minsFormat + ':' + secsFormat;
     }
 }
 

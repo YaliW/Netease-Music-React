@@ -26,14 +26,13 @@ class SongListPanel extends Component {
     render() {
         const { playSongList } = this.state;
         const { setPlayingSong, playingSong } = this.props;
-        const songName = 'song name';
         const len = playSongList.length;
         const { onChange } = this.props;
         return (
             <div className="song-list-panel-container">
                 <div className="title">
                     <h4 className="name">{'播放列表('+len+')'}</h4>
-                    <div className="song-name">{songName}</div>
+                    <div className="song-name">{playingSong.songName}</div>
                     <div className="close" onClick={onChange.bind(this)}></div>
                 </div>
                 <div className="content">
