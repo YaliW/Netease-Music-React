@@ -42,15 +42,20 @@
                     background-position: 0 -130px; // 顺序很重要 background-position 必须在 background 后面
 
                 }
-                > .pause {
+                > .audio-status {
                     width: 36px;
                     height: 36px;
                     margin-top: 0;
                     background: url('../img/playbar.png') no-repeat 0 9999px;
-                    background-position: 0 -165px;
                     margin-right: 8px;
                     text-indent: -9999px;
                     cursor: pointer;
+                }
+                > .pause {
+                    background-position: 0 -165px;
+                }
+                > .play {
+                    background-position: 0 -204px;
                 }
                 > .next-song {
                     width: 28px;

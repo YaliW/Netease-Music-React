@@ -17,10 +17,6 @@ class SongListPanel extends Component {
         });
     }
 
-    componentDidUpdate() {
-        console.log(this.state)
-    }
-
     getStateFromLocalStorage () {
         const data = localStorageGetItem('playingSongObj');
         const dataArr =  localStorageGetItem('playingSongIdArr');
@@ -29,6 +25,7 @@ class SongListPanel extends Component {
  
     render() {
         const { playSongList } = this.state;
+        const { setPlayingSong, playingSong } = this.props;
         const songName = 'song name';
         const len = playSongList.length;
         const { onChange } = this.props;
@@ -40,7 +37,7 @@ class SongListPanel extends Component {
                     <div className="close" onClick={onChange.bind(this)}></div>
                 </div>
                 <div className="content">
-                    <SongList data={playSongList} onChange={this.deleteSongList}></SongList>
+                    <SongList playingSong={playingSong} setPlayingSong={setPlayingSong} data={playSongList} onChange={this.deleteSongList}></SongList>
                     {/* <Lyric :lyric="lyric" :playedTimeSec="playedTimeSec"></Lyric> */}
                 </div>
             </div>
@@ -53,7 +50,6 @@ class SongListPanel extends Component {
         const playingSongIdArr = localStorageGetItem('playingSongIdArr');
 
         delete playingSongObj[param];
-        console.log(param, 'params');
         // indexOf(-1) 会删除最后一个元素
         const index = playingSongIdArr.indexOf(param);
         playingSongIdArr.splice(index, 1);

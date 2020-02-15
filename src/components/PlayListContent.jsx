@@ -65,7 +65,7 @@ class PlayListContent extends Component {
                 return (
                     <div className={`song-list-content ${index%2===0 ? 'odd' : ''}`} key={index}>
                     <div className="first-title common">{index+1}
-                        <span className="play-icon"></span>
+                        <span className="play-icon" onClick={this.handlePlay.bind(this, item)}></span>
                     </div>
                     <div className="second-title common black-color">{item.name}</div>
                     <div className="third-title common">{item.durationTime}</div>
@@ -164,10 +164,8 @@ class PlayListContent extends Component {
     }
 
     addToPlayingSongList() {
-        const { tracks, songUrlMap, coverImgUrl, playListId } = this.props.data;
-        // const songUrlMap = this.myPlayListDetail.songUrlMap;
-        // const coverImgUrl = this.myPlayListDetail.coverImgUrl;
-        // const playListId = this.myPlayListDetail.id;
+        const { tracks, songUrlMap, coverImgUrl } = this.props.data;
+        const playListId = this.props.id;
         const playingSongObj = localStorageGetItem('playingSongObj');
         let playingSongIdArr = localStorageGetItem('playingSongIdArr');
         if (Object.keys(playingSongIdArr).length === 0) {
@@ -188,24 +186,64 @@ class PlayListContent extends Component {
         localStorageSetItem('playingSongObj', playingSongObj);
         localStorageSetItem('playingSongIdArr', playingSongIdArr);
         
-        // if (tracks.length > 0) {
-        //     const track = tracks[0];
-        //     const id = track.id;
-        //     const coverImgUrl = this.myPlayListDetail.coverImgUrl;
-        //     const src = this.myPlayListDetail.songUrlMap[track.id];
-        //     const playListId = this.myPlayListDetail.id;
-        //     const author = track.author;
-        //     const name = track.name;
-        //     const payload = {
-        //         id: id,
-        //         src: src,
-        //         coverImgUrl: coverImgUrl,
-        //         songName: name,
-        //         playListId: playListId,
-        //         author: author
-        //     }
-        //     this.getPlayingSongInfo(payload);
-        // }
+        if (tracks.length > 0) {
+            const song = tracks[0];
+            const { setPlayingSong, setIsPlay } = this.props;
+            const payload = {
+                id: song.id,
+                src: songUrlMap[song.id],
+                coverImgUrl: coverImgUrl,
+                songName: song.name,
+                playListId: playListId,
+                author: song.author
+            }
+
+            setPlayingSong(payload);
+            setIsPlay(true);
+
+        }
+    }
+
+    handlePlay(param) {
+        const {  setPlayingSong, setIsPlay } = this.props;
+        const playListDetail = this.props.data;
+        
+        const id = param.id;
+        const coverImgUrl = playListDetail.coverImgUrl;
+        const src = playListDetail.songUrlMap[param.id];
+        const playListId = playListDetail.id;
+        const author = param.author;
+        const name = param.name;
+        const payload = {
+            id: id,
+            src: src,
+            coverImgUrl: coverImgUrl,
+            songName: name,
+            playListId: playListId,
+            author: author
+        }
+        setPlayingSong(payload);
+        setIsPlay(true);
+
+        const data = {
+            id: id,
+            name: name,
+            author: author,
+            collection: param.collection,
+            durationTime: param.durationTime,
+            coverImgUrl: coverImgUrl,
+            playListId: playListId,
+            src: src,
+        }
+        const playingSongObj = localStorageGetItem('playingSongObj');
+        const playingSongIdArr = localStorageGetItem('playingSongIdArr');
+
+        if (!playingSongObj.hasOwnProperty(id)) {
+            playingSongObj[id] = data;
+            playingSongIdArr.push(id);
+        }
+        localStorageSetItem('playingSongObj', playingSongObj);
+        localStorageSetItem('playingSongIdArr', playingSongIdArr);
     }
 }
 

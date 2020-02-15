@@ -67,6 +67,9 @@
             
         }
     }
+    > .selected {
+        background-color: #000000;
+    }
     .song-item:hover .delete{
         visibility: visible;
         cursor: pointer;

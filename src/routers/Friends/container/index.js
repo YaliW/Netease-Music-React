@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutWrapper from '../../../layout/index'
+import LayoutWrapper from '../../../layout/container/index'
 
 class Friends extends React.Component {
     

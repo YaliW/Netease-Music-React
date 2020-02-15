@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Player from '../components/Player';
-import SongListPanel from '../components/SongListPanel';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Player from '../../components/Player';
+import SongListPanel from '../../components/SongListPanel';
+import { setIsPlay, setPlayingSong } from '../store/actions';
 
 export default function Wrapper(WrapperComponent) {
     class Layout extends Component {
@@ -21,11 +22,12 @@ export default function Wrapper(WrapperComponent) {
 
         render() {
             const { footerVisible, autovisible, showSongList } = this.state;
+            const { playingSong, isPlay, setIsPlay, setPlayingSong } = this.props;
             let songListComponent = null;
             if (showSongList) {
                 songListComponent = (
                     <div className="song-list">
-                        <SongListPanel onChange={this.closeSongListPanel.bind(this)}></SongListPanel>
+                        <SongListPanel playingSong={playingSong} setPlayingSong={setPlayingSong} onChange={this.closeSongListPanel.bind(this)}></SongListPanel>
                     </div>
                 )
             }
@@ -48,7 +50,7 @@ export default function Wrapper(WrapperComponent) {
                         <div className="bg" title="背景"></div>
                         <div className="hand" title="展开播放器"></div>
                         <div className="player">
-                            <Player onChange={this.clickShowSongList.bind(this)}></Player>
+                            <Player playingSong={playingSong} isPlay={isPlay} setIsPlay={setIsPlay} onChange={this.clickShowSongList.bind(this)}></Player>
                         </div>
                     </div>
                     {songListComponent}
@@ -120,9 +122,13 @@ export default function Wrapper(WrapperComponent) {
         }
     };
 
-    const mapStateToProps = (state) => {
-        return state.layout || {};
+    const mapStateToProps = (state) => ({
+        isPlay: state.layout.isPlay,
+        playingSong: state.layout.playingSong,
+    })
+    const mapDispatchToProps = {
+        setIsPlay,
+        setPlayingSong,
     };
-    const mapDispatchToProps = {};
     return connect(mapStateToProps, mapDispatchToProps)(Layout);
 };

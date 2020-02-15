@@ -2,15 +2,23 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import { localStorageGetItem } from '../utils';
 import { audio } from '../utils';
-import EventEmitter from 'eventemitter3'
+import classnames from 'classnames';
+import { setIsPlay } from '../layout/store/actions';
 
 class Player extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            songListLen: localStorageGetItem('playingSongIdArr').length
+            songListLen: localStorageGetItem('playingSongIdArr').length,
         }
-        console.log(audio, 'import audio')
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { playingSong } = this.props;
+        if (playingSong.id !== nextProps.playingSong.id) {
+            this.initialSong(nextProps.playingSong);
+        }
+        console.log(nextProps.playingSong, 'nextProps.playingSong')
     }
 
     componentDidMount() {
@@ -23,7 +31,7 @@ class Player extends Component {
     }
 
     render() {
-        const { onChange } = this.props;
+        const { onChange, isPlay, playingSong } = this.props;
         const { songListLen } = this.state;
         return (
             <div className="player-container-wrapper">
@@ -31,7 +39,7 @@ class Player extends Component {
                     <div className="left">
                         <div className="btn">
                             <span className="prev-song"></span>
-                            <span className="pause" onClick={() => this.handlePlay()}></span>
+                            <span className={classnames("audio-status", !isPlay ? "play" : "pause")} onClick={() => this.handlePlay()}></span>
                             <span className="next-song"></span> 
                         </div>
 
@@ -41,8 +49,8 @@ class Player extends Component {
 
                         <div className="play-status">
                             <div className="play-title">
-                                <div className="song-name">因为理想</div>
-                                <div className="singer">逃跑计划</div>
+                                <div className="song-name">{playingSong.songName}</div>
+                                <div className="singer">{playingSong.author.length > 0 ? playingSong.author[0].name : ''}</div>
                             </div>
 
                             <div className="play-bar">
@@ -72,13 +80,24 @@ class Player extends Component {
     }
 
     handlePlay() {
-        const param = {
-            src: "https://music.163.com/song/media/outer/url?id=34341349.mp3",
+        const { isPlay, setIsPlay } = this.props;
+        if (isPlay) {
+            audio.emitPause();
+            setIsPlay(!isPlay);
+        } else {
+            audio.emitPlay(); // emit play
+            setIsPlay(!isPlay);
+        }
+    }
+
+    initialSong(param) {
+        const { setIsPlay } = this.props;
+        const payload = {
+            src: param.src,
             autoplay: true,
         }
-        audio.emitSetSrc(param);
-        audio.emitPlay(); // emit play
-        console.log('click play')
+        audio.emitSetSrc(payload); 
+        setIsPlay(true);
     }
 }
 

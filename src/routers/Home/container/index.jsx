@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setPlayList, setTotalPlay } from '../store/actions';
 import { TopPlayList } from '../model';
 import { fetchPlayList } from '../service';
-import LayoutWrapper from '../../../layout/index';
+import LayoutWrapper from '../../../layout/container/index';
 import PlayList from '../components/PlayList'
 import Category from '../components/Category'
 import Paging from '../components/Paging'

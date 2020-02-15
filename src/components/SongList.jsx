@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { audio } from '../utils';
 
 class SongList extends Component {
     constructor(props) {
@@ -10,11 +11,11 @@ class SongList extends Component {
     }
 
     render() {
-        const { data, onChange } = this.props;
+        const { data, onChange, playingSong } = this.props;
         const songItem = data.map((item) => {
             return (
-                <div className={classnames('song-item')} key={item.id}>
-                    <div className="common name" >{item.name}</div>
+                <div className={classnames('song-item', playingSong.id === item.id ? 'selected' : '')} key={item.id}>
+                    <div className="common name" onClick={this.handlePlay.bind(this,item)}>{item.name}</div>
                     <div className="common blank">
                         <div className="delete" onClick={() => { onChange(item.id); }}></div>
                     </div>
@@ -29,6 +30,26 @@ class SongList extends Component {
                 {songItem}
             </div>
         )
+    }
+
+    handlePlay(param) {
+        const { setPlayingSong } = this.props;
+        const id = param.id;
+        const coverImgUrl = param.coverImgUrl;
+        const src = param.src;
+        const playListId = param.playListId;
+        const author = param.author;
+        const name = param.name;
+        const payload = {
+            id: id,
+            src: src,
+            coverImgUrl: coverImgUrl,
+            songName: name,
+            playListId: playListId,
+            author: author
+        }
+        setPlayingSong(payload);
+        
     }
 }
 

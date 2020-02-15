@@ -10,27 +10,41 @@ class Audio {
 
     initialPlayer = () => {
         this.EE.on(this.audioEvent.PLAY, () => {
-            this.onPlay();
+            this.play();
         });
         this.EE.on(this.audioEvent.SETSRC, (options) => {
-            console.log(options, 'options')
             this.setSrc(options.src, options.autoplay);
+        });
+        this.EE.on(this.audioEvent.PAUSE, () => {
+            this.pause();
         })
     }
 
+    // emit event
     emitPlay = () => {
-        this.EE.emit(this.audioEvent.PLAY, '1', '2')
+        this.EE.emit(this.audioEvent.PLAY)
     }
 
-    onPlay = () => {
-        this.audioDOM.play();
-        console.log(this.audioDOM, 'this.audioDOM');
+    emitPause = () => {
+        this.EE.emit(this.audioEvent.PAUSE)
     }
 
     emitSetSrc = (param) => {
         this.EE.emit(this.audioEvent.SETSRC, param);
     }   
+    // end
 
+    // 播放
+    play = () => {
+        this.audioDOM.play();
+    }
+
+    // 暂停
+    pause = () => {
+        this.audioDOM.pause();
+    }
+
+    // setSrc 会自动播放
     setSrc = (src, autoplay = true) => {
         this.audioDOM.src = src;
         this.audioDOM.autoplay = autoplay;

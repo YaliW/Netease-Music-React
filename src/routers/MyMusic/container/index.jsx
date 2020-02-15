@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
 import { setMyPlayList, setPlayListDetail } from '../store/actions'
+import { setPlayingSong, setIsPlay } from '../../../layout/store/actions'
 import { fetchMyPlayList, fetchPlayListDetail, fetchSongUrl } from '../service'
 import { PlayListDetail, MyPlayList } from '../model/index'
 
 import LeftTitle from '../components/LeftTitle'
 import PlayListContent from '../../../components/PlayListContent'
 // import AudioPlayer from '../../../components/AudioPlayer'
-import LayoutWrapper from '../../../layout/index'
+import LayoutWrapper from '../../../layout/container/index'
 
 class MyMusic extends React.Component {
     constructor(props) {
@@ -73,7 +74,7 @@ class MyMusic extends React.Component {
     }
     
     render() {
-        const { myPlayList, playListDetail } = this.props;
+        const { myPlayList, playListDetail, setPlayingSong, setIsPlay } = this.props;
         const tracks = playListDetail ? playListDetail.tracks : [];
         let selectedTrack = null;
         if (tracks) {
@@ -83,7 +84,7 @@ class MyMusic extends React.Component {
         return (
             <div className="my-music-container">
                 <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
-                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail}></PlayListContent>
+                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail} setPlayingSong={setPlayingSong} setIsPlay={setIsPlay}></PlayListContent>
             </div>
 
             
@@ -119,6 +120,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setMyPlayList,
     setPlayListDetail,
+    setPlayingSong,
+    setIsPlay,
 }
 
 export default LayoutWrapper(connect(mapStateToProps, mapDispatchToProps)(MyMusic));
