@@ -205,7 +205,7 @@ class PlayListContent extends Component {
     }
 
     handlePlay(param) {
-        const {  setPlayingSong, setIsPlay } = this.props;
+        const { setPlayingSong, setIsPlay } = this.props;
         const playListDetail = this.props.data;
         
         const id = param.id;

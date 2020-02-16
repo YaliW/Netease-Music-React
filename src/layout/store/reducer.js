@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_IS_PLAY, SET_PLAYING_SONG } from './actionTypes';
+import { SET_IS_PLAY, SET_PLAYING_SONG, SET_LYRIC } from './actionTypes';
 
 const initState = {
     isPlay: false,
@@ -10,7 +10,8 @@ const initState = {
         songName: '',
         playListId: '',
         author: ''
-    }
+    },
+    lyric: []
 }
 
 export default (state = initState, action) => {
@@ -25,6 +26,11 @@ export default (state = initState, action) => {
                 nextState.playingSong = action.payload
             });
             
+        case SET_LYRIC:
+            return produce(state, nextState => {
+                nextState.lyric = action.payload
+            });
+
         default:
             return state;
     }

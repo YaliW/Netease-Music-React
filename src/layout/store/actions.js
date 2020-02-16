@@ -1,4 +1,4 @@
-import { SET_IS_PLAY, SET_PLAYING_SONG } from './actionTypes';
+import { SET_IS_PLAY, SET_PLAYING_SONG, SET_LYRIC } from './actionTypes';
 
 export const setIsPlay = (isPlay = false) => (
     {
@@ -11,5 +11,12 @@ export const setPlayingSong = (playingSong = {}) => (
     {
         type: SET_PLAYING_SONG,
         payload: playingSong,
+    }
+)
+
+export const setLyric = (lyric = []) => (
+    {
+        type: SET_LYRIC,
+        payload: lyric,
     }
 )

@@ -1,0 +1,23 @@
+.lyric-container {
+    width: 415px;
+    height: 259px;
+    overflow: scroll;
+    color: #989898;
+    word-wrap: break-word;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > .item {
+        width: 354px;
+        height: 32px;
+        line-height: 32px;
+        // transform: translate(0px, 130px);
+    }
+    > .selected {
+        font-weight: bold;
+        font-size: 14px;
+        color: #ffffff;
+        transition: color 0.7s linear;
+    }
+}

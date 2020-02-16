@@ -6,7 +6,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Player from '../../components/Player';
 import SongListPanel from '../../components/SongListPanel';
-import { setIsPlay, setPlayingSong } from '../store/actions';
+import { setIsPlay, setPlayingSong, setLyric } from '../store/actions';
+import { fetchLyric } from '../service';
 
 export default function Wrapper(WrapperComponent) {
     class Layout extends Component {
@@ -20,14 +21,42 @@ export default function Wrapper(WrapperComponent) {
             }
         }
 
+        componentWillReceiveProps(nextProps) {
+            const { playingSong } = this.props;
+            const newId = nextProps.playingSong.id;
+            if (playingSong.id !== newId) {
+                this.fetchLyricAsync(newId);
+            }
+        }
+
+        fetchLyricAsync(id) {
+            const { setLyric } = this.props;
+            fetchLyric({id:id}).then(res => {
+                if (res.status === 200 && res.data.code === 200) {
+                    const value = res.data.lrc ? res.data.lrc.lyric : '';
+                    const lyric = value.split(/\r?\n/).map(item => {
+                        const index = item.indexOf(']');
+                        const timeArr = item.slice(1, index).split(':');
+                        const time = timeArr.length === 2 ? timeArr[0]*60 + Math.floor(timeArr[1]) : 0;
+                        const content = item.slice(index + 1);
+                        return {
+                            time,
+                            content,
+                        };
+                    });
+                    setLyric(lyric);
+                }
+            })
+        }
+
         render() {
             const { footerVisible, autovisible, showSongList } = this.state;
-            const { playingSong, isPlay, setIsPlay, setPlayingSong } = this.props;
+            const { playingSong, isPlay, setIsPlay, setPlayingSong, lyric } = this.props;
             let songListComponent = null;
             if (showSongList) {
                 songListComponent = (
                     <div className="song-list">
-                        <SongListPanel playingSong={playingSong} setPlayingSong={setPlayingSong} onChange={this.closeSongListPanel.bind(this)}></SongListPanel>
+                        <SongListPanel lyric={lyric} playingSong={playingSong} setPlayingSong={setPlayingSong} onChange={this.closeSongListPanel.bind(this)}></SongListPanel>
                     </div>
                 )
             }
@@ -125,10 +154,12 @@ export default function Wrapper(WrapperComponent) {
     const mapStateToProps = (state) => ({
         isPlay: state.layout.isPlay,
         playingSong: state.layout.playingSong,
+        lyric: state.layout.lyric,
     })
     const mapDispatchToProps = {
         setIsPlay,
         setPlayingSong,
+        setLyric,
     };
     return connect(mapStateToProps, mapDispatchToProps)(Layout);
 };

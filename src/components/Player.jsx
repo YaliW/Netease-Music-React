@@ -15,7 +15,7 @@ class Player extends Component {
             totalWidth: 493,
             playedTime: '00:00',
             totalTime: '00:00',
-
+            playedTimeSec: 0,
         }
     }
 
@@ -117,14 +117,13 @@ class Player extends Component {
     }
 
     onTimeUpdate(param) {
-        console.log(param, 'PARAM')
         const { totalWidth } = this.state;
-        const playedTimeSec = param.time;
+        const tempPlayedTimeSec = param.time;
         const duration = Math.round(param.duration);
         // 解决动画卡顿的方法是计算得到每秒的宽度，然后动画时间设置为1秒
         // this.playedTimeSec 当前播放时间每秒会更新，当更新的时候计算ratio，每秒会更新
-        const ratio = playedTimeSec / duration;
-        const tempPlayedTime = this.convertTimeFormat(playedTimeSec);
+        const ratio = tempPlayedTimeSec / duration;
+        const tempPlayedTime = this.convertTimeFormat(tempPlayedTimeSec);
         const tempTotalTime = this.convertTimeFormat(duration);
         const tempPlayedWidth = totalWidth * ratio;
 
@@ -132,6 +131,7 @@ class Player extends Component {
             playedTime: tempPlayedTime,
             totalTime: tempTotalTime,
             playedWidth: tempPlayedWidth,
+            playedTimeSec: tempPlayedTimeSec,
         })
     }
 

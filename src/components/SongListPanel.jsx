@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { localStorageGetItem, localStorageSetItem } from '../utils';
 import SongList from './SongList';
+import Lyric from './Lyric';
+import { audio } from '../utils/index';
 
 class SongListPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            playSongList: this.getStateFromLocalStorage()
+            playSongList: this.getStateFromLocalStorage(),
+            playedTimeSec: 0,
         }
     }
 
@@ -15,6 +18,12 @@ class SongListPanel extends Component {
         window.addEventListener('setItem', ()=> {
             this.setState({ playSongList: this.getStateFromLocalStorage() });
         });
+        audio.onTimeUpdate((options) => {
+            const { time } = options;
+            this.setState({
+                playedTimeSec: time,
+            })
+        })
     }
 
     getStateFromLocalStorage () {
@@ -24,8 +33,8 @@ class SongListPanel extends Component {
     }
  
     render() {
-        const { playSongList } = this.state;
-        const { setPlayingSong, playingSong } = this.props;
+        const { playSongList, playedTimeSec } = this.state;
+        const { setPlayingSong, playingSong, lyric } = this.props;
         const len = playSongList.length;
         const { onChange } = this.props;
         return (
@@ -37,7 +46,7 @@ class SongListPanel extends Component {
                 </div>
                 <div className="content">
                     <SongList playingSong={playingSong} setPlayingSong={setPlayingSong} data={playSongList} onChange={this.deleteSongList}></SongList>
-                    {/* <Lyric :lyric="lyric" :playedTimeSec="playedTimeSec"></Lyric> */}
+                    <Lyric lyric={lyric} playedTimeSec={playedTimeSec}></Lyric>
                 </div>
             </div>
         )

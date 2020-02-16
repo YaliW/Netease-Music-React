@@ -18,5 +18,9 @@ export default {
         url: `${prefix}/song/url`,
         method: 'GET'
     },
+    getLyric: {
+        url: `${prefix}/lyric`,
+        method: 'GET'
+    },
 
 };   
