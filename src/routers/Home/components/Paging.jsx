@@ -103,7 +103,6 @@ class Paging extends Component {
     }
 
     handleClick() {
-        console.log(this.state.offset)
         this.props.onChange(this.state.offset);
     }
 }

@@ -88,7 +88,6 @@ class AudioPlayer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.selectedTrack, this.state.onPlayTrack)
         if (nextProps.selectedTrack !== this.state.onPlayTrack) {
             this._initPlayer();
             this._initSelectedTrack(nextProps.selectedTrack);
