@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import TimeUtil from '../utils';
 
-/* global document $:true */
+/* not used */
 
 class AudioPlayer extends Component {
     constructor(props) {
