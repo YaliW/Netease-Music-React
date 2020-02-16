@@ -10,7 +10,12 @@ class Player extends Component {
         super(props);
         this.state = {
             songListLen: localStorageGetItem('playingSongIdArr').length,
-            audioEvent: getAudioEvent()
+            audioEvent: getAudioEvent(),
+            playedWidth: 0,
+            totalWidth: 493,
+            playedTime: '00:00',
+            totalTime: '00:00',
+
         }
     }
 
@@ -28,16 +33,20 @@ class Player extends Component {
             })
         });
         audio.initialPlayer();  // on play
-        const { audioEvent } = this.state;
-            audio.onTimeUpdate((options) => {
-                console.log(options, 'options')
-                // this.onTimeUpdate(options);
-            })
+        audio.onTimeUpdate((options) => {
+            this.onTimeUpdate(options);
+        })
     }
 
     render() {
         const { onChange, isPlay, playingSong } = this.props;
-        const { songListLen } = this.state;
+        const { songListLen, playedTime, totalTime, totalWidth, playedWidth } = this.state;
+        const barStyle = {
+            width: totalWidth + 'px',
+        }
+        const playbarStyle = {
+            width: playedWidth + 'px',
+        }
         return (
             <div className="player-container-wrapper">
                 <div className="player-container">
@@ -59,16 +68,17 @@ class Player extends Component {
                             </div>
 
                             <div className="play-bar">
-                                <div className="bar">
-                                    <div className="black-bar">
+                                <div className="bar" style={barStyle}>
+                                    <div className="black-bar" style={playbarStyle}>
                                     </div>
-                                    <div className="red-bar">
+                                    <div className="red-bar" style={playbarStyle}>
                                         <span></span>
                                     </div>
                                 </div>
-                                <div className="play-time"></div>
+                                <div className="play-time">
+                                    <span>{playedTime}</span> / {totalTime}
+                                </div>
                             </div>
-
                         </div>
                     </div>  
                     <div className="operation-btn">
@@ -108,14 +118,21 @@ class Player extends Component {
 
     onTimeUpdate(param) {
         console.log(param, 'PARAM')
-        // this.playedTimeSec = param.time;
-        // const duration = Math.round(param.duration);
-        // // 解决动画卡顿的方法是计算得到每秒的宽度，然后动画时间设置为1秒
-        // // this.playedTimeSec 当前播放时间每秒会更新，当更新的时候计算ratio，每秒会更新
-        // const ratio = this.playedTimeSec / duration;
-        // this.playedTime = this.convertTimeFormat(this.playedTimeSec);
-        // this.totalTime = this.convertTimeFormat(duration);
-        // this.playedWidth = this.totalWidth * ratio + 'px';
+        const { totalWidth } = this.state;
+        const playedTimeSec = param.time;
+        const duration = Math.round(param.duration);
+        // 解决动画卡顿的方法是计算得到每秒的宽度，然后动画时间设置为1秒
+        // this.playedTimeSec 当前播放时间每秒会更新，当更新的时候计算ratio，每秒会更新
+        const ratio = playedTimeSec / duration;
+        const tempPlayedTime = this.convertTimeFormat(playedTimeSec);
+        const tempTotalTime = this.convertTimeFormat(duration);
+        const tempPlayedWidth = totalWidth * ratio;
+
+        this.setState({
+            playedTime: tempPlayedTime,
+            totalTime: tempTotalTime,
+            playedWidth: tempPlayedWidth,
+        })
     }
 
     convertTimeFormat(time) {

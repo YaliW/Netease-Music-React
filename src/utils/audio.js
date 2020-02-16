@@ -5,7 +5,7 @@ class Audio {
     constructor(props) {
         this.audioEvent = getAudioEvent('');
         this.audioDOM = document.getElementById('netease-music-player'); // 得到index.html中audio标签DOM元素
-        this.EE = new EventEmitter();
+        this.EE = new EventEmitter();  // 必须是同一个EventEmitter实例的 emit 和 on 才可以互相监听
     }
 
     initialPlayer = () => {
@@ -18,11 +18,11 @@ class Audio {
         this.EE.on(this.audioEvent.PAUSE, () => {
             this.pause();
         });
-        this.audioDOM.ontimeupdate = (options) => {
-            console.log('eee');
-            this.EE.emit(this.audioEvent.ONTIMEUPDATE, options);
+        // 需要劫持 audio的ontimeupdate 方法，并重写，绑定emitTimeUpdate方法。
+        // 在播放时，每次执行原生方法ontimeupdate 时，取而代之的是执行emitTimeUpdate，把新的参数发射出去
+        this.audioDOM.ontimeupdate = () => {
+            this.emitTimeUpdate();
         }
-                // this.emitTimeUpdate();
     }
 
     // emit event
@@ -46,7 +46,6 @@ class Audio {
         const ratio = Math.round(this.audioDOM.currentTime * 100 / duration);
         const time = Math.round(this.audioDOM.currentTime);
         this.EE.emit(this.audioEvent.ONTIMEUPDATE, { ratio, time, duration });
-        console.log({ ratio, time, duration }, '{ ratio, time, duration }')
     }
     // end
 
@@ -66,12 +65,10 @@ class Audio {
         this.audioDOM.autoplay = autoplay;
     }
 
+    // 监听ONTIMEUPDATE，并把接收的emit的参数传递给callback
     onTimeUpdate(callback) {
-        this.EE.on(this.audioEvent.ONTIMEUPDATE, () => {
-            const duration = this.audioDOM.duration;
-            const ratio = Math.round(this.audioDOM.currentTime * 100 / duration);
-            const time = Math.round(this.audioDOM.currentTime);
-            callback({ ratio, time, duration });
+        this.EE.on(this.audioEvent.ONTIMEUPDATE, (options) => {
+            callback(options);
         })
     }
 
