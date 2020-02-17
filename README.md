@@ -10,8 +10,8 @@ Re-design and implement Netease Music using React and Redux. There's no 3rd part
 ## Major Packages Used in this project
 - React
 - Redux
-- ReactRedux
-- ReactRouterDOM
+- React-Redux
+- React-Router-DOM
 - ESLint
 - Babel
 - Webpack

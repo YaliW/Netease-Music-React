@@ -9,8 +9,8 @@
 ## Major Packages Used in this project
 - React
 - Redux
-- ReactRedux
-- ReactRouterDOM
+- React-Redux
+- React-Router-DOM
 - ESLint
 - Babel
 - Webpack
