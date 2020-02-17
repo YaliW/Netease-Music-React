@@ -9,7 +9,13 @@ import SongListPanel from '../../components/SongListPanel';
 import { setIsPlay, setPlayingSong, setLyric } from '../store/actions';
 import { fetchLyric } from '../service';
 
+// Wrapper 是高阶组件，参数是组件，返回的也是组件
+// 在子组件处，会调用Wrapper 进行外层封装，把自己作为参数传给Wrapper，在Wrapper处渲染
+// 实现 Vue 中 v-slot 的效果，但是有点是比v-slot更加灵活，缺点是代码量有点大
 export default function Wrapper(WrapperComponent) {
+
+    // render props
+    // Layout 渲染的子组件是由传递进来的props 参数中的组件决定的
     class Layout extends Component {
         constructor(props) {
             super(props);

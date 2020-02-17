@@ -94,5 +94,6 @@ const mapDispatchToProps = {
     setTotalPlay
 };
 
-// connect 是高阶组件
+// connect 是高阶组件, 输入一个组件，然后再输出一个组件
+// LayoutWrapper 是外层的封装，把自己做为参数传递给LayoutWrapper，在LayoutWrapper中渲染
 export default LayoutWrapper(connect(mapStateToProps, mapDispatchToProps)(Home));
