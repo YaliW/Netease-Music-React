@@ -11,11 +11,11 @@
 - Redux
 - React-Redux
 - React-Router-DOM
-- ESLint
-- Babel
-- Webpack
-- SCSS
 - EventEmitter3
+- Webpack
+- Babel
+- SCSS
+- ESLint
 
 ## Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

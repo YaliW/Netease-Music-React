@@ -12,11 +12,11 @@ Re-design and implement Netease Music using React and Redux. There's no 3rd part
 - Redux
 - React-Redux
 - React-Router-DOM
-- ESLint
-- Babel
-- Webpack
-- SCSS
 - EventEmitter3
+- Webpack
+- Babel
+- SCSS
+- ESLint
 
 ## Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
