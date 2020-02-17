@@ -1,6 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Netease Music
+Re-design and implement Netease Music using React and Redux. There's no 3rd party UI libraries used in this project. All components are designed and implemented only for this project. The accomplished functions include Found Music, My Music, Song List Detail, Music Player, Playlist and Lyric.
+[中文介绍](https://github.com/weiwei-web-road/netease-music-vue/blob/master/README-CN.md)
+
+## Screenshots
+![image](https://github.com/weiwei-web-road/netease-music-vue/blob/master/screenshots/netease-music-home.png)
+![image](https://github.com/weiwei-web-road/netease-music-vue/blob/master/screenshots/netease-music-my-music.png)
+![image](https://github.com/weiwei-web-road/netease-music-vue/blob/master/screenshots/netease-music-detail.png)
+
+## Major Packages Used in this project
+- ESLint
+- Babel
+- Webpack
+- Vue including vue-router
+- Vuex
+- LESS
 
 ## Available Scripts
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
