@@ -12,6 +12,7 @@ import { fetchLyric } from '../service';
 // Wrapper 是高阶组件，参数是组件，返回的也是组件
 // 在子组件处，会调用Wrapper 进行外层封装，把自己作为参数传给Wrapper，在Wrapper处渲染
 // 实现 Vue 中 v-slot 的效果，但是有点是比v-slot更加灵活，缺点是代码量有点大
+// 因为它接收唯一带有数据的 “props”（代表属性）对象与并返回一个 React 元素。这类组件被称为“函数组件”，因为它本质上就是 JavaScript 函数。
 export default function Wrapper(WrapperComponent) {
 
     // render props

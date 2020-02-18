@@ -11,6 +11,7 @@ topBar: [
     { title: '下载客户端', url: '/download' }],
 };
 
+// 组件名称必须以大写字母开头
 class Header extends Component {
     render() {
         const itemLists = TopBarOptions.topBar.map((item) => {

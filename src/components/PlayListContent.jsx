@@ -4,8 +4,14 @@ import classnames from 'classnames';
 import { localStorageGetItem, localStorageSetItem} from '../utils'
 
 class PlayListContent extends Component {
+    // 建议从组件自身的角度命名 props，而不是依赖于调用组件的上下文命名。
+    // 组件无论是使用函数声明还是通过 class 声明，都决不能修改自身的 props
+    // 可以将任何东西作为props 传递，甚至是React元素，其本质是对象
+    // 组件可以接受任意 props，包括基本数据类型，React 元素以及函数。
+    // 组合和props 可以实现清晰的组件定制和单向数据流
     constructor(props) {
         super(props);
+        // state 是私有的，并且完全受控于当前组件。
         this.state = {
             opened: false,
             isCanOpen: false,
