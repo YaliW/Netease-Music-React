@@ -6,9 +6,12 @@ import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed';
 class Lyric extends Component {
     constructor(props) {
         super(props);
+        // this.lyricLineRef = React.createRef();
         this.state = {
             indexLine: 0,
         }
+        // this.indexLine = 0;
+        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -22,6 +25,7 @@ class Lyric extends Component {
                         indexLine: i,
                     })
                     tempIndex = i;
+                    // this.indexLine = i;
                     break;
                 }
             }
@@ -31,10 +35,11 @@ class Lyric extends Component {
 
     goToLyricLine(tempIndex) {
         const lyricLine = 'lyricLine'+tempIndex;
-        const node = ReactDOM.findDOMNode(this.refs[lyricLine]);        
+        const node = ReactDOM.findDOMNode(this.refs[lyricLine]);   
         scrollIntoViewIfNeeded(node, {
             centerIfNeeded: true
         });
+        
     }
 
     render() {

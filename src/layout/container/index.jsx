@@ -13,6 +13,7 @@ import { fetchLyric } from '../service';
 // 在子组件处，会调用Wrapper 进行外层封装，把自己作为参数传给Wrapper，在Wrapper处渲染
 // 实现 Vue 中 v-slot 的效果，但是有点是比v-slot更加灵活，缺点是代码量有点大
 // 因为它接收唯一带有数据的 “props”（代表属性）对象与并返回一个 React 元素。这类组件被称为“函数组件”，因为它本质上就是 JavaScript 函数。
+// HOC 通过将组件包装在容器组件中来组成新组件. 可以将 HOC 视为参数化容器组件
 export default function Wrapper(WrapperComponent) {
 
     // render props
