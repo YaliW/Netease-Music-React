@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ThemeContext } from './Context';
 
 export default class C extends Component {
     constructor(props) {
@@ -8,10 +9,12 @@ export default class C extends Component {
         }
     }
 
-    // static contextType = InitContext
+    // 导入 ThemeContext
+    static contextType = ThemeContext
     render() {
+        console.log(this.context, 'context'); 
         return (
-            <div>name: {this.context}</div>
+            <div>name: {JSON.stringify(this.context)}</div>
         )
     }
 }
