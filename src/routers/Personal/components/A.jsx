@@ -8,7 +8,8 @@ export default class A extends Component {
         super(props);
         this.state = {
             messageFromA: 'message from A',
-            message: 'message'
+            message: 'message',
+            troggle: () => {console.log('troggle context')}
         }
     }
 
