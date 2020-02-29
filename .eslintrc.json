@@ -1,0 +1,106 @@
+{
+  "extends": ["fbjs", "prettier"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "root": true,
+  "plugins": ["jest", "no-for-of-loops", "react", "react-internal"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "accessor-pairs": 0,
+    "brace-style": [2, "1tbs"],
+    "consistent-return": 0,
+    "dot-location": [2, "property"],
+    // We use console["2"]() as a signal to not transform it:
+    "dot-notation": [2,
+      {
+        "allowPattern": "^(2|warn)$"
+      }
+    ],
+    "eol-last": 2,
+    "eqeqeq": [2, "allow-null"],
+    "indent": 0,
+    "jsx-quotes": [2, "prefer-double"],
+    "keyword-spacing": [2,
+      {
+        "after": true,
+        "before": true
+      }
+    ],
+    "no-bitwise": 0,
+    "no-inner-declarations": [2, "functions"],
+    "no-multi-spaces": 2,
+    "no-restricted-globals": [2],
+    "no-restricted-syntax": [2, "WithStatement"],
+    "no-shadow": 2,
+    "no-unused-expressions": 2,
+    "no-unused-vars": [2,
+      {
+        "args": "none"
+      }
+    ],
+    "no-use-before-define": 0,
+    "no-useless-concat": 0,
+    "quotes": [2, "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "space-before-blocks": 2,
+    "space-before-function-paren": 0,
+    "valid-typeof": [2,
+      {
+        "requireStringLiterals": true
+      }
+    ],
+    // We apply these settings to files that should run on Node.
+    // They can"t use JSX or ES6 modules, and must be in strict mode.
+    // They can, however, use other ES6 features.
+    // (Note these rules are overridden later for source files.)
+    "no-var": 2,
+    "strict": 2,
+    // Enforced by Prettier
+    // TODO: Prettier doesn"t handle long strings or long comments. Not a big
+    // deal. But I turned it 0 because loading the plugin causes some obscure
+    // syntax 2 and it didn"t seem worth investigating.
+    "max-len": 0,
+    // React & JSX
+    // Our transforms set this automatically
+    "react/jsx-boolean-value": [2, "always"
+    ],
+    "react/jsx-no-undef": 2,
+    // We don"t care to do this
+    "react/jsx-sort-prop-types": 0,
+    "react/jsx-space-before-closing": 2,
+    "react/jsx-uses-react": 2,
+    "react/no-is-mounted": 0,
+    // This isn"t useful in our test code
+    "react/react-in-jsx-scope": 2,
+    "react/self-closing-comp": 2,
+    // We don"t care to do this
+    "react/jsx-wrap-multilines": [
+      2,
+      {
+        "declaration": false,
+        "assignment": false
+      }
+    ]
+  },
+  "globals": {
+    "SharedArrayBuffer": true,
+    "spyOnDev": true,
+    "spyOnDevAndProd": true,
+    "spyOnProd": true,
+    "trustedTypes": true
+  }
+}
+

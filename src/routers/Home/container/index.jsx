@@ -21,13 +21,13 @@ class Home extends Component {
         };
         this.fetchPlayListAsync();
         // 调用异步请求，拿到结果之后，调用setPlayList
-        
+
     }
 
     fetchPlayListAsync() {
         const { offset, limit, order } = this.state;
         const payload = {
-            offset: offset, 
+            offset: offset,
             limit: limit,
             order: order
         }
