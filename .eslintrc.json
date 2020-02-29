@@ -2,17 +2,23 @@
   "extends": ["fbjs", "prettier"],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true,
+    "commonjs": true
   },
   "root": true,
   "plugins": ["jest", "no-for-of-loops", "react", "react-internal"],
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 8,
-    "sourceType": "script",
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+      "experimentalObjectRestSpread": true,
+      "jsx": true,
+      "arrowFunctions": true,
+      "classes": true,
+      "modules": true,
+      "defaultParams": true
+    },
+    "sourceType": "module"
   },
   "rules": {
     "accessor-pairs": 0,

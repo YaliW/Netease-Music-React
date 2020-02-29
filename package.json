@@ -44,5 +44,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "pre-commit": ["lint"],
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
 }
