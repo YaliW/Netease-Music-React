@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import C from './C'
 
 export default class B extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { messageFromA } = this.props;
         return (

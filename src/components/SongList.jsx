@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 class SongList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
     render() {
         const { data, onChange, playingSong } = this.props;
         const songItem = data.map((item) => {

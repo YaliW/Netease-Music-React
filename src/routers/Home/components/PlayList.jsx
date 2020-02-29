@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
-import { NavLink } from "react-router-dom";
-import { browserHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 class PlayList extends Component {
-    constructor(props) {
-        super(props);
-    }
     get formateData () {
         const { data } = this.props;
         return data.reduce((prev, curr, index) => {
