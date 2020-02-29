@@ -1,45 +1,36 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types';
 
-class Category extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            type: props.type
-        };
-    }
-    // 当props 发生变化的时候 会执行
-    componentWillReceiveProps(nextProps) {
-        const { type } = this.props; // ES6 的析构
-        if (type !== nextProps.type) {
-            this.setState({
-                type: nextProps.type
-            });
-        }
-    }
+// 函数组件 没有this， 没有生命周期，没有state
+// 轻量，用于只渲染数据，性能较好
+function Category(props) {
+    const [type, setType] = useState(props.type);
 
-    render() {
-        const { type } = this.state;
-        const { onChange } = this.props;
-        const backgroundPosition = type === 'hot' ? '0 0' : '0 -32px';
-        const backgroundPositionStyle = {
-            backgroundPosition
-        }
-        return (
-            <div className="category-container">
-                <div className="all-category">
-                    <div className="all">
-                        全部
-                    </div>
-                </div>
-                <div className="hot-new-category" style={backgroundPositionStyle}>
-                    <div className={`category-button ${type === 'hot' ? 'active' : ''}`} onClick={() => onChange('hot')}>热门</div>
-                    <div className={`category-button ${type === 'new' ? 'active' : ''}`} onClick={() => onChange('new')}>最新</div>
+    // 在 componentDidMount, componentDidUpdate 渲染结束之后执行
+    // 相当于 Vue 中的watch，当第二个参数变化时，才执行
+    useEffect(() => {
+        setType(props.type)
+    }, [props.type])
+    
+    const { onChange } = props;
+    const backgroundPosition = type === 'hot' ? '0 0' : '0 -32px';
+    const backgroundPositionStyle = {
+        backgroundPosition
+    }
+    return (
+        <div className="category-container">
+            <div className="all-category">
+                <div className="all">
+                    全部
                 </div>
             </div>
-        )
-    }
-}
+            <div className="hot-new-category" style={backgroundPositionStyle}>
+                <div className={`category-button ${type === 'hot' ? 'active' : ''}`} onClick={() => onChange('hot')}>热门</div>
+                <div className={`category-button ${type === 'new' ? 'active' : ''}`} onClick={() => onChange('new')}>最新</div>
+            </div>
+        </div>
+    )
+};
 
 Category.defaultProps = {
     type: 'hot',
@@ -49,6 +40,6 @@ Category.defaultProps = {
 Category.propTypes = {
     type: PropTypes.oneOf(['new', 'hot']),
     onChange: PropTypes.func
-}
+};
 
 export default Category;
