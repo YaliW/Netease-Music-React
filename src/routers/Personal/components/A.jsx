@@ -9,7 +9,9 @@ export default class A extends Component {
         this.state = {
             messageFromA: 'message from A',
             message: 'message',
-            troggle: () => {console.log('troggle context')}
+            troggle: () => {
+                console.log('troggle context'); 
+            }
         }
     }
 

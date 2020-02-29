@@ -86,7 +86,7 @@
     // TODO: Prettier doesn"t handle long strings or long comments. Not a big
     // deal. But I turned it 0 because loading the plugin causes some obscure
     // syntax 2 and it didn"t seem worth investigating.
-    "max-len": 0,
+    "max-len": [2, { "code": 160 }],
     // React & JSX
     // Our transforms set this automatically
     "react/jsx-boolean-value": [2, "always"

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
 import { setMyPlayList, setPlayListDetail } from '../store/actions'
-import { setPlayingSong, setIsPlay } from '../../../layout/store/actions'
+import { setPlayingSong, setIsPlay } from 'layout/store/actions'
 import { fetchMyPlayList, fetchPlayListDetail, fetchSongUrl } from '../service'
 import { PlayListDetail, MyPlayList } from '../model/index'
 
 import LeftTitle from '../components/LeftTitle'
-import PlayListContent from '../../../components/PlayListContent'
-import LayoutWrapper from '../../../layout/container/index'
+import PlayListContent from 'components/PlayListContent'
+import LayoutWrapper from 'layout/container/index'
 
 class MyMusic extends React.Component {
     constructor(props) {
@@ -78,23 +78,15 @@ class MyMusic extends React.Component {
         return (
             <div className="my-music-container">
                 <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)} />
-                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail} setPlayingSong={setPlayingSong} setIsPlay={setIsPlay} />
+                <PlayListContent
+                    key={playListDetail.id} 
+                    id={playListDetail.id} 
+                    className="right-content" 
+                    data={playListDetail} 
+                    setPlayingSong={setPlayingSong} 
+                    setIsPlay={setIsPlay} 
+                />
             </div>
-
-
-                // <div className="player">
-                //     {/* <Player></Player> */}
-                //     <AudioPlayer
-                //         lock="true"
-                //         selectedTrack={selectedTrack}
-                //         // songlist={this.state.songlist}
-                //         // handleSelectionChange={this.trackSelectionChange}
-                //         // handleSonglistOpenChange={this.toggleSonglistOpen}
-                //         handleSongProcessTime={this.songProcessTimeChange}
-                //         // handleLockChange={this.togglePlayerLock}
-                //     />
-                // </div>
-
         );
     }
 }
