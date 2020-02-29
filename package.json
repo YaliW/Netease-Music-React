@@ -29,7 +29,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js"
+    "lint:fix": "eslint --fix src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": "react-app"

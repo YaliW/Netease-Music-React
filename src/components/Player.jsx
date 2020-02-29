@@ -32,7 +32,7 @@ class Player extends Component {
                 songListLen: localStorageGetItem('playingSongIdArr').length
             })
         });
-        audio.initialPlayer();  // on play
+        audio.initialPlayer(); // on play
         audio.onTimeUpdate((options) => {
             this.onTimeUpdate(options);
         })
@@ -52,9 +52,9 @@ class Player extends Component {
                 <div className="player-container">
                     <div className="left">
                         <div className="btn">
-                            <span className="prev-song"></span>
-                            <span className={classnames("audio-status", !isPlay ? "play" : "pause")} onClick={() => this.handlePlay()}></span>
-                            <span className="next-song"></span> 
+                            <span className="prev-song" />
+                            <span className={classnames('audio-status', !isPlay ? 'play' : 'pause')} onClick={() => this.handlePlay()} />
+                            <span className="next-song" /> 
                         </div>
 
                         <div className="head-img">
@@ -69,10 +69,9 @@ class Player extends Component {
 
                             <div className="play-bar">
                                 <div className="bar" style={barStyle}>
-                                    <div className="black-bar" style={playbarStyle}>
-                                    </div>
+                                    <div className="black-bar" style={playbarStyle} />
                                     <div className="red-bar" style={playbarStyle}>
-                                        <span></span>
+                                        <span />
                                     </div>
                                 </div>
                                 <div className="play-time">
@@ -82,8 +81,8 @@ class Player extends Component {
                         </div>
                     </div>  
                     <div className="operation-btn">
-                        <div className="volume"></div>
-                        <div className="repeat"></div>
+                        <div className="volume" />
+                        <div className="repeat" />
                         <div className="play-list-icon" onClick={onChange.bind(this)}>
                             <span>{songListLen}</span>
                         </div>

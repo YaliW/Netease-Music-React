@@ -2,7 +2,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-  } from "react-router-dom"; // react-router-dom 是把路由放在了视图层DOM上，也可以使用react-router, 对路由进行配置，两个库均可配置路由
+  } from 'react-router-dom'; // react-router-dom 是把路由放在了视图层DOM上，也可以使用react-router, 对路由进行配置，两个库均可配置路由
 import React, { Component } from 'react';
 
 
@@ -18,10 +18,10 @@ class Layout extends Component {
           <Router>
             <Switch>
                 {/* exact 匹配整个url */}
-                <Route exact path="/">
+                <Route exact={true} path="/">
                     <Home />
                 </Route>
-                <Route exact path="/playlistDetail/:id">
+                <Route exact={true} path="/playlistDetail/:id">
                     <PlayListDetailPage />
                 </Route>
                 <Route path="/my_music">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { audio } from '../utils';
 
 class SongList extends Component {
     constructor(props) {
@@ -15,13 +14,19 @@ class SongList extends Component {
         const songItem = data.map((item) => {
             return (
                 <div className={classnames('song-item', playingSong.id === item.id ? 'selected' : '')} key={item.id}>
-                    <div className="common name" onClick={this.handlePlay.bind(this,item)}>{item.name}</div>
+                    <div
+                      className="common name"
+                      onClick={this.handlePlay.bind(this, item)}
+                    >{item.name}</div>
                     <div className="common blank">
-                        <div className="delete" onClick={() => { onChange(item.id); }}></div>
+                        <div className="delete" onClick={() => {
+                          onChange(item.id);
+                        }}
+                      />
                     </div>
                     <div className="common author">{item.author[0].name}</div>
                     <div className="common duration">{item.durationTime}</div>
-                    <div className="source"><a></a></div>
+                    <div className="source"><div /></div>
                 </div>
             )
         })
@@ -49,7 +54,7 @@ class SongList extends Component {
             author: author
         }
         setPlayingSong(payload);
-        
+
     }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 const TopBarOptions = {
 topBar: [
@@ -36,14 +36,14 @@ class Header extends Component {
             )
         });
         return (
-            <div className='netease-header'>
-                <div className='container'>
-                    <div className='icon'></div>
+            <div className="netease-header">
+                <div className="container">
+                    <div className="icon" />
                     <div className="item-list">
                         {itemLists}
                     </div>
                 </div>
-                <div className="header-bottom"></div>
+                <div className="header-bottom" />
             </div>
         )
     }

@@ -28,7 +28,7 @@
             }
         }
         > .blank {
-            width: 88px;   
+            width: 88px;
             > .delete {
                 width: 13px;
                 height: 16px;
@@ -36,7 +36,7 @@
                 background-image: url('../img/playlist.png');
                 background-position: -51px 0;
                 background-repeat: no-repeat;
-                visibility: hidden; 
+                visibility: hidden;
             }
         }
         > .author {
@@ -54,7 +54,7 @@
             width: 43px;
             padding-left: 6px;
             text-align: right;
-            a {
+            div {
                 display: inline-block;
                 margin: 7px 10px 0 0;
                 width: 14px;
@@ -64,7 +64,7 @@
                 background-repeat: no-repeat;
                 // cursor: pointer;
             }
-            
+
         }
     }
     > .selected {
@@ -73,7 +73,7 @@
     .song-item:hover .delete{
         visibility: visible;
         cursor: pointer;
-    } 
+    }
     > .selected {
         background-color: #000000;
         font-weight: bold;

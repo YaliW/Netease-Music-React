@@ -9,7 +9,6 @@ import { PlayListDetail, MyPlayList } from '../model/index'
 
 import LeftTitle from '../components/LeftTitle'
 import PlayListContent from '../../../components/PlayListContent'
-// import AudioPlayer from '../../../components/AudioPlayer'
 import LayoutWrapper from '../../../layout/container/index'
 
 class MyMusic extends React.Component {

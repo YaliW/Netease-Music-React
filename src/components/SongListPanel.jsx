@@ -28,7 +28,7 @@ class SongListPanel extends Component {
 
     getStateFromLocalStorage () {
         const data = localStorageGetItem('playingSongObj');
-        const dataArr =  localStorageGetItem('playingSongIdArr');
+        const dataArr = localStorageGetItem('playingSongIdArr');
         return (dataArr || []).map(item => data[item] || null);
     }
  
@@ -42,11 +42,11 @@ class SongListPanel extends Component {
                 <div className="title">
                     <h4 className="name">{'播放列表('+len+')'}</h4>
                     <div className="song-name">{playingSong.songName}</div>
-                    <div className="close" onClick={onChange.bind(this)}></div>
+                    <div className="close" onClick={onChange.bind(this)} />
                 </div>
                 <div className="content">
-                    <SongList playingSong={playingSong} setPlayingSong={setPlayingSong} data={playSongList} onChange={this.deleteSongList}></SongList>
-                    <Lyric lyric={lyric} playedTimeSec={playedTimeSec}></Lyric>
+                    <SongList playingSong={playingSong} setPlayingSong={setPlayingSong} data={playSongList} onChange={this.deleteSongList} />
+                    <Lyric lyric={lyric} playedTimeSec={playedTimeSec} />
                 </div>
             </div>
         )

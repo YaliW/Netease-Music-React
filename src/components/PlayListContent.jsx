@@ -33,7 +33,7 @@ class PlayListContent extends Component {
         if (tags && tags.length > 0) {
             const tagsDom = tags.map((item) => {
                 return (
-                    <div className="mark-content"  key={item}>
+                    <div className="mark-content" key={item}>
                         {item}
                     </div>
                 )
@@ -62,30 +62,28 @@ class PlayListContent extends Component {
                 const { author } = tracks;
                 let authorDom = null;
                 if (author) {
-                    authorDom = author.map((item) => {
-                        return (
-                            <span key={index}>{item.name}</span>
-                        )
+                    authorDom = author.map((subItem) => {
+                        return <span key={index}>{subItem.name}</span>;
                     })
                 }
                 return (
                     <div className={`song-list-content ${index%2===0 ? 'odd' : ''}`} key={index}>
                     <div className="first-title common">{index+1}
-                        <span className="play-icon" onClick={this.handlePlay.bind(this, item)}></span>
+                        <span className="play-icon" onClick={this.handlePlay.bind(this, item)} />
                     </div>
                     <div className="second-title common black-color">{item.name}</div>
                     <div className="third-title common">{item.durationTime}</div>
                     <div className="fourth-title common black-color">
                         {authorDom}
                     </div>
-                    <div className="fifth-title common black-color">{item.collection}</div>           
+                    <div className="fifth-title common black-color">{item.collection}</div>
                 </div>
                 )
             })
         }
-        
+
         return (
-            <div className={classnames("song-content-container", className)}>
+            <div className={classnames('song-content-container', className)}>
             <div className="song-introduction">
                 <div className="image-border">
                     <img src={data.coverImgUrl} alt="" />
@@ -93,25 +91,25 @@ class PlayListContent extends Component {
                 <div className="introduction-content">
                     <div className="song-name">
                         <div className="song-list-icon">
-                            <span className="icon"></span>
+                            <span className="icon" />
                         </div>
                         <div className="name">{data.name}
                         </div>
                     </div>
-    
+
                     <div className="song-author">
                         <img src={data.creatorAvatarUrl} alt="" />
                         <div className="author-name">{data.creatorNickName}</div>
                         <div className="create-time">{data.createTime} 创建</div>
                     </div>
-    
+
                     <div className="song-play-button" onClick={this.addToPlayingSongList.bind(this)}>
-                        <div className="play-icon"></div>
+                        <div className="play-icon" />
                         <div className="play">播放</div>
                     </div>
-    
+
                     {markContent}
-    
+
                     {/* 使用 ref 定位元素 */}
                     <p ref="descRef" className={ `song-detail ${!opened ? 'closed' : ''}` }>
                         {data.description}
@@ -133,7 +131,7 @@ class PlayListContent extends Component {
                 <div className="common fourth-title">歌手</div>
                 <div className="common fifth-title">专辑</div>
             </div>
-    
+
             {tracksDom}
         </div>
         )
@@ -152,7 +150,7 @@ class PlayListContent extends Component {
         if (descRef) {
             const clientHeight = descRef.clientHeight; // 可视窗口的高度，包括可是窗口的高度加padding
             const scrollHeight = descRef.scrollHeight; // 文档或元素真实的高度，相对 Scroll 的高度，包括被scroll 隐藏的内容的真正高度加padding
-            const isClosed =  clientHeight < scrollHeight;
+            const isClosed = clientHeight < scrollHeight;
 
             if (isClosed) {
                 // 初始化是展开的，则isCanOpen is true
@@ -182,16 +180,16 @@ class PlayListContent extends Component {
             const id = item.id;
             if (!playingSongObj.hasOwnProperty(id)) {
                 const url = songUrlMap[id];
-                item['src'] = url;
-                item['coverImgUrl'] = coverImgUrl;
-                item['playListId'] = playListId;
+                item.src = url;
+                item.coverImgUrl = coverImgUrl;
+                item.playListId = playListId;
                 playingSongObj[id] = item;
                 playingSongIdArr.push(id);
             }
         });
         localStorageSetItem('playingSongObj', playingSongObj);
         localStorageSetItem('playingSongIdArr', playingSongIdArr);
-        
+
         if (tracks.length > 0) {
             const song = tracks[0];
             const { setPlayingSong, setIsPlay } = this.props;
@@ -213,7 +211,7 @@ class PlayListContent extends Component {
     handlePlay(param) {
         const { setPlayingSong, setIsPlay } = this.props;
         const playListDetail = this.props.data;
-        
+
         const id = param.id;
         const coverImgUrl = playListDetail.coverImgUrl;
         const src = playListDetail.songUrlMap[param.id];

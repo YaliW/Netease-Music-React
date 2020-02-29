@@ -6,20 +6,20 @@ class Footer extends Component {
         this.state = {
             data: [
                 {
-                    title: "用户认证",
-                    position: "-63px -101px",
+                    title: '用户认证',
+                    position: '-63px -101px',
                 },
                 {
-                    title: "独立音乐人",
-                    position: "0 0",
+                    title: '独立音乐人',
+                    position: '0 0',
                 },
                 {
-                    title: "赞赏",
-                    position: "-60px -50px",
+                    title: '赞赏',
+                    position: '-60px -50px',
                 },
                 {
-                    title: "视频奖励",
-                    position: "0 -101px",
+                    title: '视频奖励',
+                    position: '0 -101px',
                 }
             ]
         }
@@ -31,7 +31,7 @@ class Footer extends Component {
             }
             return (
                 <div className="list-item" key={item.title}>
-                    <div className="icon" style={style}></div>
+                    <div className="icon" style={style} />
                     <div className="title">{item.title}</div>
                 </div>
             )
