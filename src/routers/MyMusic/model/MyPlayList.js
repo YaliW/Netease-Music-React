@@ -21,7 +21,7 @@ class MyPlayList {
             return new MyPlayList(value);
         }
     }
-    
+
 }
 
 export default MyPlayList;

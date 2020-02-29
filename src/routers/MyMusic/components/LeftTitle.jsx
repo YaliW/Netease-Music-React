@@ -12,8 +12,8 @@ class LeftTitle extends Component {
         const songList = data.map((item, index) => {
             return (
                 <div className="song-list" key={index} onClick={() => onChange(item.id)}>
-                    <div className="image"> 
-                        <img src={item.coverImgUrl} alt=""/>
+                    <div className="image">
+                        <img src={item.coverImgUrl} alt="" />
                     </div>
                     <div className="song-list-content">
                         <div className="song-list-name">{item.name}</div>

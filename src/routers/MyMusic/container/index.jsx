@@ -74,17 +74,12 @@ class MyMusic extends React.Component {
     }
 
     render() {
-        const { myPlayList, playListDetail, setPlayingSong, setIsPlay } = this.props;
-        const tracks = playListDetail ? playListDetail.tracks : [];
-        let selectedTrack = null;
-        if (tracks) {
-            selectedTrack = tracks[0];
-        }
+        const { myPlayList, playListDetail } = this.props;
 
         return (
             <div className="my-music-container">
-                <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
-                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail} setPlayingSong={setPlayingSong} setIsPlay={setIsPlay}></PlayListContent>
+                <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)} />
+                <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail} setPlayingSong={setPlayingSong} setIsPlay={setIsPlay} />
             </div>
 
 
