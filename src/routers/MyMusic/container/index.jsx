@@ -72,7 +72,7 @@ class MyMusic extends React.Component {
             songProcessTime: time,
         });
     }
-    
+
     render() {
         const { myPlayList, playListDetail, setPlayingSong, setIsPlay } = this.props;
         const tracks = playListDetail ? playListDetail.tracks : [];
@@ -80,14 +80,14 @@ class MyMusic extends React.Component {
         if (tracks) {
             selectedTrack = tracks[0];
         }
-        
+
         return (
             <div className="my-music-container">
                 <LeftTitle className="left-title" data={myPlayList} onChange={this.handleClick.bind(this)}></LeftTitle>
                 <PlayListContent key={playListDetail.id} id={playListDetail.id} className="right-content" data={playListDetail} setPlayingSong={setPlayingSong} setIsPlay={setIsPlay}></PlayListContent>
             </div>
 
-            
+
                 // <div className="player">
                 //     {/* <Player></Player> */}
                 //     <AudioPlayer
@@ -100,7 +100,7 @@ class MyMusic extends React.Component {
                 //         // handleLockChange={this.togglePlayerLock}
                 //     />
                 // </div>
-           
+
         );
     }
 }

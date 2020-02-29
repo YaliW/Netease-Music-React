@@ -1,13 +1,19 @@
 {
-  "extends": ["fbjs", "prettier"],
   "env": {
     "browser": true,
     "node": true,
     "es6": true,
-    "commonjs": true
+    "commonjs": true,
+    "jest": true
   },
   "root": true,
-  "plugins": ["jest", "no-for-of-loops", "react", "react-internal"],
+  "extends": [
+    "react-app",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": [
+    "jsx-a11y"
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {

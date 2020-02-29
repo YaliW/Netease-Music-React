@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setPlayList, setTotalPlay } from '../store/actions';
 import { TopPlayList } from '../model';
 import { fetchPlayList } from '../service';
-import LayoutWrapper from '../../../layout/container/index';
+import LayoutWrapper from 'layout/container/index';
 import PlayList from '../components/PlayList'
 import Category from '../components/Category'
 import Paging from '../components/Paging'
@@ -43,7 +43,8 @@ class Home extends Component {
         this.setState({
             order: param
         },
-        this.fetchPlayListAsync)  // this.fetchPlayListAsync 是一个函数，作为callback. 如果this.fetchPlayListAsync（） 则是会立刻执行这个函数，把结果null 作为callback
+        this.fetchPlayListAsync);
+        // this.fetchPlayListAsync 是一个函数，作为callback. 如果this.fetchPlayListAsync（） 则是会立刻执行这个函数，把结果null 作为callback
     }
 
     render() {
@@ -54,9 +55,9 @@ class Home extends Component {
                 {/* bind 改变了函数体 handleClick 内部this的指向，指向当前组件的this， bind返回一个函数 */}
                 {/* bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。 */}
                 {/* 这里不可以使用 apply/call，因为他们没有返回函数 */}
-                <Category type={order} onChange={this.handleClick.bind(this)}></Category>
-                <PlayList data={playList}></PlayList>
-                <Paging data={totalPlay} onChange={this.clickPage.bind(this)}></Paging>
+                <Category type={order} onChange={this.handleClick.bind(this)} />
+                <PlayList data={playList} />
+                <Paging data={totalPlay} onChange={this.clickPage.bind(this)} />
             </div>
         );
     }

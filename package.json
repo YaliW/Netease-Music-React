@@ -24,10 +24,12 @@
     "scroll-into-view-if-needed": "^2.2.24"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,8 +46,14 @@
       "last 1 safari version"
     ]
   },
-  "pre-commit": ["lint"],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix",
+      "pre-push": "npm run lint"
+    }
+  },
   "devDependencies": {
-    "pre-commit": "^1.2.2"
+    "husky": "^4.2.3",
+    "react-app-rewired": "^2.1.5"
   }
 }
