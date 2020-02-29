@@ -33,9 +33,9 @@ class Paging extends Component {
         const left = currPage > 5 ? (this.totalPages < currPage + 4 ? Math.ceil(totalPlay / limit) - 7 : currPage - 3) : 2;
         const isEnough = Math.ceil(totalPlay / limit) > currPage + 3; const right = isEnough ? Math.max(currPage + 3, left + 6) : Math.ceil(totalPlay / limit) - 1;
         for (let index = left; index <= right; index++) {
-            result.push(index); 
+            result.push(index);
         }
-        return result; 
+        return result;
     }
 
     render() {
@@ -44,10 +44,10 @@ class Paging extends Component {
         if (this.leftEllipsis) {
             leftEllipsisDom = <span>...</span>
         }
-        const centerArrDom = this.centerArr.map((item, index) => {
+        const centerArrDom = this.centerArr.map((item) => {
             return (
-                <span>
-                    <span key={index} className={`num-page ${currPage === item ? 'curr-page' : ''}`} onClick={() => this.clickPage(item)}>{item}</span >
+                <span key={item}>
+                    <span className={`num-page ${currPage === item ? 'curr-page' : ''}`} onClick={() => this.clickPage(item)}>{item}</span >
                 </span>
             )
         })
@@ -64,9 +64,9 @@ class Paging extends Component {
                     {centerArrDom}
                     {rightEllipsisDom}
                     <span className={`num-page ${currPage === this.totalPages ? 'curr-page' : ''}`} onClick={() => this.clickPage(this.totalPages)}>{this.totalPages}</span >
-                    <span className={`page next-page ${currPage === this.totalPages ? 'grey-next-page' : ''}`} onClick={() => this.clickNextPage()}>下一页</span > 
+                    <span className={`page next-page ${currPage === this.totalPages ? 'grey-next-page' : ''}`} onClick={() => this.clickNextPage()}>下一页</span >
                 </div>
-            </div> 
+            </div>
         )
     }
 
@@ -87,7 +87,7 @@ class Paging extends Component {
             }, this.handleClick)
             // this.$emit('clickPage', {value: this.offset});
         }
-        
+
     }
     clickNextPage() {
         const {limit, currPage} = this.state;
@@ -99,7 +99,7 @@ class Paging extends Component {
             }, this.handleClick)
             // this.$emit('clickPage', {value: this.offset});
         }
-        
+
     }
 
     handleClick() {
