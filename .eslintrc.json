@@ -92,7 +92,6 @@
     "react/jsx-no-undef": 2,
     // We don"t care to do this
     "react/jsx-sort-prop-types": 0,
-    "react/jsx-space-before-closing": 2,
     "react/jsx-uses-react": 2,
     "react/no-is-mounted": 0,
     // This isn"t useful in our test code
