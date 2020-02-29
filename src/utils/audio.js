@@ -5,7 +5,7 @@ class Audio {
     constructor(props) {
         this.audioEvent = getAudioEvent('');
         this.audioDOM = document.getElementById('netease-music-player'); // 得到index.html中audio标签DOM元素
-        this.EE = new EventEmitter();  // 必须是同一个EventEmitter实例的 emit 和 on 才可以互相监听
+        this.EE = new EventEmitter(); // 必须是同一个EventEmitter实例的 emit 和 on 才可以互相监听
     }
 
     initialPlayer = () => {
