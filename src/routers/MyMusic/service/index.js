@@ -6,8 +6,8 @@ export const fetchMyPlayList = function (params) {
 
 export const fetchPlayListDetail = function (params) {
     return fetchApi(apis.getPlayListDetail, params)
-}
+};
 
 export const fetchSongUrl = function(params) {
     return fetchApi(apis.getSongUrl, params)
-}
+};

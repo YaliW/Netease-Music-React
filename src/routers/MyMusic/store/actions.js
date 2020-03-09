@@ -14,6 +14,9 @@ export const setPlayListDetail = (playListDetail = {}) => ({
 });
 
 export const getPlayListDetail = (params) => {
+  // getState 是当前能拿到的 state 值，一般为state 更新之前的值
+  // dispatch 是触发 action
+  // (dispatch, getState) 是 redux-thunk 的格式，redux-thunk 是redux 的中间件
   return (dispatch, getState) => {
     fetchPlayListDetail(params).then((res) => {
       if (res.status === 200 && res.data.code === 200) {
