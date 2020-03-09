@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux' // 合并不同的Reducer
+import { combineReducers, applyMiddleware } from 'redux' // 合并不同的Reducer
 import { createStore } from 'redux'
+import thunk from 'redux-thunk';
 
 import homeReducer from '../routers/Home/store/reducer';
 import myMusicReducer from '../routers/MyMusic/store/reducer';
@@ -13,4 +14,4 @@ const reducers = combineReducers({
     layout: layoutReducer
 });
 
-export default createStore(reducers);
+export default createStore(reducers, applyMiddleware(thunk));
