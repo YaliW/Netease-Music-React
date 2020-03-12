@@ -40,6 +40,7 @@ export const getPlayListDetail = (params) => {
   };
 };
 
+// action 是具体的业务逻辑， 包括同步和异步
 export const getMyPlayList = (params) => {
   console.log(params);
   return function (dispatch, getState) {

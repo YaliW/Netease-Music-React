@@ -11,10 +11,12 @@ const initState = {
 // 纯函数：给固定的输入，一定有固定的输出（不能有不固定的日期函数），不会有副作用（改变参数的值）
 // reducer 中不能做异步处理，因为Reducer 并不会等待异步请求返回的结果
 // Reducer 会接受异步请求已经返回的结果，然后深拷贝state，改变新的 state，旧的state并不会改变
+
+// 接收 connect dispatch 过来的 action，执行 Reducer 更新 state
 export default (state = initState, action) => {
 
     switch (action.type) {
-        
+
         case SET_MY_PLAY_LIST:
             return produce(state, nextState => {  // produce 实现深拷贝，也可以使用JSON.parse(JSON.stringfy(***))
                 nextState.myPlayList = action.payload;
