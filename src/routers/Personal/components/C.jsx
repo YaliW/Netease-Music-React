@@ -9,11 +9,8 @@ export default class C extends Component {
         }
     }
 
-    // 初始化 contextType
-    // static contextType = ThemeContext
-
     render() {
-        console.log(this.context, 'context'); 
+        console.log(this.context, 'context');
         const {messageFromA, troggle} = this.context;
         return (
             <div onClick={troggle}>name: {messageFromA}</div>
