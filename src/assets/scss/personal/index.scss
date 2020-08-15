@@ -1,0 +1,13 @@
+.personal-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.content-wrapper {
+  margin-bottom: 12px;
+  border: solid 1px lightgray;
+}
+

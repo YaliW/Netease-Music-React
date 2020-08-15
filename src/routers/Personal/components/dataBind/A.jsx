@@ -10,7 +10,7 @@ export default class A extends Component {
             messageFromA: 'message from A',
             message: 'message',
             troggle: () => {
-                console.log('troggle context'); 
+                console.log('troggle context');
             }
         }
     }
