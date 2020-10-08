@@ -1,7 +1,6 @@
 import React from 'react';
 import { PLACE_HOLDER_IMG } from '../mock';
-import '../../../../../assets/scss/personal/BrandShowcase.scss';
-
+import '../container/index.scss';
 export default (props) => {
   const { data = {}, scalStyle } = props;
 
@@ -20,6 +19,7 @@ export default (props) => {
       }}
     >
       <img src={itemImg || PLACE_HOLDER_IMG} alt="" />
+      <div className="logo" style={{ backgroundImage: `url(${shopLogo})` }} />
     </div>
 
   )

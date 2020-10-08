@@ -1,12 +1,20 @@
 # 网易云音乐
 使用React全家桶设计和实现网易云音乐网站。项目中没有使用第三方的UI库。所有的组件仅仅针对本项目设计和实现。已经完成的功能有发现音乐、我的音乐、歌单详情页、音乐播放器、播放列表和歌词。
 
-## Screenshots
+## 功能简介
+- 网易云音乐-首页 -- Home Package
+- 网易云音乐-我的音乐 -- MyMusic Package
+- 网易云音乐-音乐详情 -- PlayListDetail Package
+- 个人-进阶首屏轮播Banner设计 -- Persion_BrandShowCase Package
+
+## 截图
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-home.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-my-music.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-detail.png)
-
-## Major Packages Used in this project
+<audio id="audio" controls="" preload="none">
+<source id="mp3" src="https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/1111.mp4">
+</audio>
+## 技术体系
 - React
 - Redux
 - React-Redux
@@ -17,7 +25,7 @@
 - SCSS
 - ESLint
 
-## Available Scripts
+## 命令
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
@@ -45,42 +53,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

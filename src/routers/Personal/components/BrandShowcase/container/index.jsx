@@ -1,10 +1,10 @@
 import React, {useMemo, useState, useEffect} from 'react';
 import { MOCK_DATA } from '../mock';
-import '../../../../../assets/scss/personal/BrandShowcase.scss';
+import './index.scss';
+import bg from 'assets/img/brandshowcase_bg.jpg';
 import Item from '../components/item';
 import {
   getLayoutByScrollX,
-  ContainerWidth,
   minScrollX,
   maxScrollX,
   getScrollXByCount,
@@ -74,33 +74,36 @@ export default () => {
   })
 
   return (
-    <div className="brand-showcase-wrapper"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}>
-      <div className="brand-showcase-wrapper-content"
-        id="scrollX" data-scroll={scrollX}>
-        {/* 占位 */}
-        {data.slice(0, 12).map(index =>
-          <div key={index} className="item-place-holder" />
-        )}
-        {/* 从占位的宽度，逐渐按比例缩小 */}
-        {data.slice(0, 12).map((item, index) =>
-          (<div className="item-wapper-layout"
-            key={index}
-            style={{
-              width: layouts[index].width + 'px',
-              height: layouts[index].width + 'px',
-              left: layouts[index].position.left + 'px',
-              right: layouts[index].position.right + 'px'
-            }}
-          >
-            <Item data={item} scalStyle={layouts[index].ratio} />
-          </div>)
-        )}
+    <div className="container" style={{ backgroundImage: `url(${bg})` }}>
+      <div className="brand-showcase-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="brand-showcase-wrapper-content"
+          id="scrollX" data-scroll={scrollX}>
+          {/* 占位 */}
+          {data.slice(0, 12).map(index =>
+            <div key={index} className="item-place-holder" />
+          )}
+          {/* 从占位的宽度，逐渐按比例缩小 */}
+          {data.slice(0, 12).map((item, index) =>
+            (<div className="item-wapper-layout"
+              key={index}
+              style={{
+                width: layouts[index].width + 'px',
+                height: layouts[index].width + 'px',
+                left: layouts[index].position.left + 'px',
+                right: layouts[index].position.right + 'px'
+              }}
+            >
+              <Item data={item} scalStyle={layouts[index].ratio} />
+            </div>)
+          )}
 
+        </div>
       </div>
-    </div>
 
-  )
-}
+    </div>
+  );
+};

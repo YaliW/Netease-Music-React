@@ -1,3 +1,16 @@
+.container {
+  width: 100%;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 750px auto;
+  padding-bottom: 15px;
+}
+
 .brand-showcase-wrapper {
   width: 750px;
   height: 300px;
@@ -5,7 +18,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: red;
   overflow: hidden;
 
   .brand-showcase-wrapper-content {
@@ -39,19 +51,32 @@
       overflow: visible;
       width: 100%;
       height: 100%;
-      border-radius: 12px;
       .item-wrapper {
         width: 200px;
         height: 200px;
-        overflow: hidden;
-        border-radius: 6px;
         transform-origin: center;
         position: relative;
         flex-shrink: 0;
         flex-grow: 0;
+        overflow: visible;
         img {
+          border-radius: 12px;
+          overflow: hidden;
           width: 100%;
           height: 100%;
+        }
+        > .logo {
+          position: absolute;
+          bottom: -50px;
+          left: 10px;
+          width: 180px;
+          height: 40px;
+          z-index: 2;
+          background-color: white;
+          border-radius: 20px;
+          overflow: hidden;
+          background-position: center;
+          background-size: contain;
         }
       }
     }

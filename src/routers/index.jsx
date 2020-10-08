@@ -11,6 +11,7 @@ import Home from './Home/container';
 import Friends from './Friends/container';
 import Personal from './Personal/container';
 import PlayListDetailPage from './PlayListDetailPage/container';
+import BrandShowCase from './Personal/components/BrandShowcase/container';
 
 class Layout extends Component {
     render () {
@@ -38,6 +39,9 @@ class Layout extends Component {
                 </Route>
                 <Route path="/download">
                     <Friends />
+                </Route>
+                <Route path="/personal/branchShowCase">
+                   <BrandShowCase />
                 </Route>
                 <Route path="/personal">
                    <Personal />
