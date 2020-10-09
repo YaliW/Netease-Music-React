@@ -6,9 +6,10 @@ Re-design and implement Netease Music using React and Redux. There's no 3rd part
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-home.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-my-music.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-detail.png)
-<audio id="audio" controls="" preload="none">
-<source id="mp3" src="https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/1111.mp4">
-</audio>
+<video id="video" controls="" preload="none" poster="https://vfiles.gtimg.cn/vupload/20201009/d03a711602209223746.png">
+      <source id="mp4" src="https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/demo.mp4" type="video/mp4">
+      <p>Your user agent does not support the HTML5 Video element.</p>
+</video>
 
 ## Major Packages Used in this project
 - React
