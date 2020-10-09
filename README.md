@@ -6,6 +6,9 @@ Re-design and implement Netease Music using React and Redux. There's no 3rd part
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-home.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-my-music.png)
 ![image](https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/netease-music-detail.png)
+<audio id="audio" controls="" preload="none">
+<source id="mp3" src="https://github.com/YaliW/Netease-Music-React/blob/master/screenshots/1111.mp4">
+</audio>
 
 ## Major Packages Used in this project
 - React
